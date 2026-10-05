@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="300" viewBox="0 0 96 300" fill="none">
+  <defs>
+    <linearGradient id="metal" x1="24" y1="150" x2="77" y2="242" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF0B4"/>
+      <stop offset=".46" stop-color="#EBC050"/>
+      <stop offset="1" stop-color="#B98020"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="48" y1="170" x2="48" y2="234" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE6A0" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#FFC43D" stop-opacity=".12"/>
+    </linearGradient>
+  </defs>
+  <path d="M48 0V117" stroke="#E8C86E" stroke-width="1.5"/>
+  <circle cx="48" cy="124" r="7" stroke="#FFE7A2" stroke-width="2"/>
+  <path d="M48 134C44 146 36 147 32 154H64C60 147 52 146 48 134Z" fill="url(#metal)"/>
+  <path d="M27 157H69L79 172H17L27 157Z" fill="url(#metal)"/>
+  <path d="M22 175H74L69 239H27L22 175Z" fill="url(#glass)" stroke="url(#metal)" stroke-width="3"/>
+  <path d="M35 176L36 237M61 176L60 237M48 177V237" stroke="#FFE6A0" stroke-width="1.5"/>
+  <path d="M23 189H73M25 221H71" stroke="#E9BE58" stroke-width="2"/>
+  <path d="M36 197L48 185L60 197L48 210L36 197ZM36 222L48 209L60 222L48 235L36 222Z" stroke="#FFE6A0" stroke-width="1.2"/>
+  <path d="M24 240H72L78 250H18L24 240Z" fill="url(#metal)"/>
+  <path d="M27 253H69L59 261H37L27 253Z" fill="url(#metal)"/>
+  <path d="M48 261V272M43 281L48 272L53 281L48 290L43 281Z" stroke="#FFE6A0" stroke-width="1.5"/>
+</svg>

@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.next-production/
+.env*
+!.env.example
+test-results/
+playwright-report/
+*.tsbuildinfo
+out/
+output/
+Catatan Saya/
+references/

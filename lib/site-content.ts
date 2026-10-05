@@ -1,0 +1,50 @@
+import 'server-only';
+import { z } from 'zod';
+import localContent from '@/content/site.json';
+
+const imageSource = z.string().max(2048).refine(
+  (value) => value === '' || (/^\/(?!\/)/.test(value) && !value.includes('..')) || /^https:\/\//.test(value),
+  'Gunakan path lokal /images/... atau URL HTTPS.',
+);
+const httpsLink = z.string().url().startsWith('https://').max(2048);
+const text = z.string().min(1).max(500);
+const detailItem = z.object({ id: text, title: text, description: text, detail: z.string().min(1).max(5000) });
+
+export const siteContentSchema = z.object({
+  heroImage: imageSource.refine(Boolean), aboutImage: imageSource, benefitsImage: imageSource,
+  registrationImages: z.array(imageSource).length(4),
+  education: z.array(detailItem.extend({ shortTitle: text, subtitle: text, image: imageSource })).min(1).max(6),
+  programs: z.array(detailItem.extend({ subtitle: text })).max(12),
+  gallery: z.array(z.object({ id: text, label: text, category: z.enum(['Pembelajaran', 'Kegiatan', 'Fasilitas']), image: imageSource })).max(48),
+  articles: z.array(z.object({ id: text, title: text, category: text, date: z.iso.date(), image: imageSource, excerpt: text, body: z.string().max(20000) })).max(50),
+  contact: z.object({
+    address: text, phone: z.string().regex(/^\+?[0-9 ()-]{6,25}$/), email: z.string().email(),
+    whatsapp: z.string().regex(/^[0-9]{8,16}$/).or(z.literal('')),
+    registrationUrl: httpsLink.or(z.literal('')), mapUrl: httpsLink,
+  }),
+  socials: z.array(z.object({ label: text, url: httpsLink })).max(6),
+});
+
+export type SiteContent = z.infer<typeof siteContentSchema>;
+export type Education = SiteContent['education'][number];
+export type Program = SiteContent['programs'][number];
+export type Article = SiteContent['articles'][number];
+
+export async function getSiteContent(): Promise<SiteContent> {
+  const fallback = siteContentSchema.parse(localContent);
+  const remoteUrl = process.env.SITE_CONTENT_URL;
+  if (!remoteUrl) return fallback;
+  try {
+    const response = await fetch(httpsLink.parse(remoteUrl), {
+      next: { revalidate: 60 }, signal: AbortSignal.timeout(5000),
+      headers: process.env.SITE_CONTENT_TOKEN ? { Authorization: `Bearer ${process.env.SITE_CONTENT_TOKEN}` } : {},
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const raw = await response.text();
+    if (raw.length > 512_000) throw new Error('Konten terlalu besar');
+    return siteContentSchema.parse(JSON.parse(raw));
+  } catch (error) {
+    console.error('[site-content] Sumber jarak jauh gagal; memakai konten lokal.', error instanceof Error ? error.message : 'Invalid content');
+    return fallback;
+  }
+}
