@@ -273,7 +273,12 @@ button.news-card:hover { border-color: #81b2a8; }
 .dialog-contact strong { display: block; font-size: 13px; overflow-wrap: anywhere; }
 .dialog-inner > p.dialog-note { font-size: 11px; }
 .article-dialog-photo { height: 260px; border-radius: 7px; }
-.article-body { white-space: pre-line; }
+.article-body { white-space: pre-line; overflow-wrap: anywhere; }
+.article-photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-top: 14px; }
+.article-photos img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 7px; }
+.article-links { display: grid; gap: 6px; margin-top: 12px; }
+.article-links a { color: var(--teal); overflow-wrap: anywhere; font-size: 13px; }
+.news-filters { margin: 4px 0 20px; }
 .photo-dialog { max-width: min(1000px, calc(100vw - 32px)); }
 .lightbox-photo { height: min(64dvh, 600px); border-radius: 7px; }
 .lightbox-photo img { object-fit: contain; }
