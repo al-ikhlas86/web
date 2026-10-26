@@ -39,7 +39,7 @@ export default async function HalamanProfil() {
       <section className="container section sub-section">
         <div className="section-heading">
           <h1 className="sub-title">Profil Yayasan</h1>
-          <p>Kenali pengurus, kepala sekolah, wali kelas, guru, dan tenaga kependidikan keluarga besar Al Ikhlas 86. Kartu guru dan pegawai hanya tampil atas persetujuan yang bersangkutan.</p>
+          <p>Kenali pengurus, kepala sekolah, wali kelas, guru, dan tenaga kependidikan keluarga besar Al Ikhlas 86. Nama dan jabatan tampil otomatis dari data sekolah; foto dan deskripsi ditambahkan sendiri oleh yang bersangkutan.</p>
         </div>
         <ProfilTim orang={orang} katalog={katalog} />
       </section>
