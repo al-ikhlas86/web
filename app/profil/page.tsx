@@ -6,10 +6,10 @@ import { getSiteContent } from '@/lib/site-content';
 import { NAMA_YAYASAN, SITE_URL, jsonLdAman, mutlak } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Profil Yayasan: Pengurus, Guru & Tenaga Kependidikan',
-  description: 'Kenali pengurus Yayasan Al Ikhlas 86, kepala sekolah, wali kelas, guru, dan tenaga kependidikan TKIT dan SDIT Al Ikhlas di Jakasetia, Bekasi Selatan.',
+  title: 'Profil Yayasan: Pengurus, Guru & Pegawai',
+  description: 'Kenali pengurus Yayasan Al Ikhlas 86, kepala sekolah, wali kelas, guru, dan pegawai TKIT dan SDIT Al Ikhlas di Jakasetia, Bekasi Selatan.',
   alternates: { canonical: '/profil/' },
-  openGraph: { title: 'Profil Yayasan Al Ikhlas 86', description: 'Pengurus, guru, dan tenaga kependidikan Al Ikhlas 86.', url: `${SITE_URL}/profil/`, type: 'website' },
+  openGraph: { title: 'Profil Yayasan Al Ikhlas 86', description: 'Pengurus, guru, dan pegawai Al Ikhlas 86.', url: `${SITE_URL}/profil/`, type: 'website' },
 };
 
 export default async function HalamanProfil() {
@@ -39,7 +39,7 @@ export default async function HalamanProfil() {
       <section className="container section sub-section">
         <div className="section-heading">
           <h1 className="sub-title">Profil Yayasan</h1>
-          <p>Kenali pengurus, kepala sekolah, wali kelas, guru, dan tenaga kependidikan keluarga besar Al Ikhlas 86. Nama dan jabatan tampil otomatis dari data sekolah; foto dan deskripsi ditambahkan sendiri oleh yang bersangkutan.</p>
+          <p>Kenali pengurus, kepala sekolah, wali kelas, guru, dan pegawai keluarga besar Al Ikhlas 86. Nama dan jabatan tampil otomatis dari data sekolah; foto dan deskripsi ditambahkan sendiri oleh yang bersangkutan.</p>
         </div>
         <ProfilTim orang={orang} katalog={katalog} />
       </section>

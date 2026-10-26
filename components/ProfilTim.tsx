@@ -10,7 +10,7 @@ export type KartuOrang = {
 };
 
 const JUDUL_KELOMPOK: Record<KartuOrang['kelompok'], string> = {
-  pengurus: 'Pengurus Yayasan', kepala_sekolah: 'Kepala Sekolah', wali_kelas: 'Wali Kelas', pendamping: 'Guru Pendamping', guru_mapel: 'Guru Mata Pelajaran', staf: 'Tenaga Kependidikan',
+  pengurus: 'Pengurus Yayasan', kepala_sekolah: 'Kepala Sekolah', wali_kelas: 'Wali Kelas', pendamping: 'Guru Pendamping', guru_mapel: 'Guru Mata Pelajaran', staf: 'Pegawai',
 };
 const URUTAN: KartuOrang['kelompok'][] = ['pengurus', 'kepala_sekolah', 'wali_kelas', 'pendamping', 'guru_mapel', 'staf'];
 const inisial = (nama: string) => (nama.replace(/^(bapak|ibu|pak|bu|ust\.?|ustadz|ustadzah|dr\.?|drs\.?|hj\.?|h\.?)\s+/i, '').trim().charAt(0) || '?').toUpperCase();
