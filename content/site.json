@@ -2,38 +2,273 @@
   "heroImage": "/images/al-ikhlas-hero.webp",
   "aboutImage": "",
   "benefitsImage": "",
-  "registrationImages": ["", "", "", ""],
+  "registrationImages": [
+    "",
+    "",
+    "",
+    ""
+  ],
   "education": [
-    { "id": "tkit", "title": "TK Islam Terpadu", "shortTitle": "TKIT Al Ikhlas", "subtitle": "Langkah pertama yang bermakna", "description": "Kenali pendidikan taman kanak-kanak di lingkungan Yayasan Al Ikhlas 86.", "detail": "TKIT Al Ikhlas merupakan satuan pendidikan di bawah Yayasan Al Ikhlas 86, berlokasi di Jakasetia, Bekasi Selatan. Hubungi administrasi yayasan untuk informasi kelompok belajar, usia masuk, kegiatan, dan biaya pendidikan terbaru.", "image": "" },
-    { "id": "sdit", "title": "SD Islam Terpadu", "shortTitle": "SDIT Al Ikhlas", "subtitle": "Ilmu, iman, dan akhlak", "description": "Mengenal pendidikan dasar Islam terpadu Al Ikhlas di Jakasetia, Bekasi Selatan.", "detail": "SDIT Al Ikhlas adalah sekolah dasar swasta di bawah Yayasan Al Ikhlas 86, beralamat di Perum Masnaga, Jalan Nakula 6C, Jakasetia, Bekasi Selatan, dengan NPSN 20223227. Hubungi sekolah untuk informasi kurikulum dan penerimaan siswa terbaru.", "image": "" }
+    {
+      "id": "tkit",
+      "title": "TK Islam Terpadu",
+      "shortTitle": "TKIT Al Ikhlas",
+      "subtitle": "Langkah pertama yang bermakna",
+      "description": "Kenali pendidikan taman kanak-kanak di lingkungan Yayasan Al Ikhlas 86.",
+      "detail": "TKIT Al Ikhlas merupakan satuan pendidikan di bawah Yayasan Al Ikhlas 86, berlokasi di Jakasetia, Bekasi Selatan. Hubungi administrasi yayasan untuk informasi kelompok belajar, usia masuk, kegiatan, dan biaya pendidikan terbaru.",
+      "image": "",
+      "katalog": "TK"
+    },
+    {
+      "id": "sdit",
+      "title": "SD Islam Terpadu",
+      "shortTitle": "SDIT Al Ikhlas",
+      "subtitle": "Ilmu, iman, dan akhlak",
+      "description": "Mengenal pendidikan dasar Islam terpadu Al Ikhlas di Jakasetia, Bekasi Selatan.",
+      "detail": "SDIT Al Ikhlas adalah sekolah dasar swasta di bawah Yayasan Al Ikhlas 86, beralamat di Perum Masnaga, Jalan Nakula 6C, Jakasetia, Bekasi Selatan, dengan NPSN 20223227. Hubungi sekolah untuk informasi kurikulum dan penerimaan siswa terbaru.",
+      "image": "",
+      "katalog": "SD"
+    }
   ],
   "programs": [
-    { "id": "tahfidz", "title": "Tahfidz Al-Qur’an", "subtitle": "Dekat dengan Al-Qur’an", "description": "Mengenal kegiatan membaca dan menghafal Al-Qur’an dalam pendidikan anak.", "detail": "Tahfidz tercantum dalam dokumentasi kegiatan SDIT Al Ikhlas dan penelitian pendidikan Al-Qur’an di sekolah. Hubungi sekolah untuk target, metode, dan jadwal yang berlaku saat ini." },
-    { "id": "pramuka", "title": "Kepramukaan", "subtitle": "Mandiri dan bertanggung jawab", "description": "Ruang belajar tentang kerja sama, kemandirian, dan tanggung jawab.", "detail": "Pramuka tercantum dalam dokumentasi pentas ekstrakurikuler Open House SDIT Al Ikhlas tahun 2022. Hubungi sekolah untuk memastikan ketersediaan dan jadwal tahun ajaran terbaru." },
-    { "id": "kreativitas", "title": "Seni & Kreativitas", "subtitle": "Berani berkarya", "description": "Mewarnai dan membuat karya sebagai cara anak mengekspresikan ide.", "detail": "Art and Craft dan lomba mewarnai tercantum dalam dokumentasi Open House SDIT Al Ikhlas tahun 2022. Hubungi sekolah untuk kegiatan seni yang tersedia saat ini." },
-    { "id": "robotik", "title": "Robotik", "subtitle": "Belajar melalui eksplorasi", "description": "Mengenal teknologi dan pemecahan masalah melalui kegiatan robotik.", "detail": "Robotik tercantum dalam dokumentasi pentas ekstrakurikuler Open House SDIT Al Ikhlas tahun 2022. Hubungi sekolah untuk informasi kelas dan jadwal terbaru." },
-    { "id": "olahraga", "title": "Olahraga", "subtitle": "Aktif, sehat, dan sportif", "description": "Mengenal aktivitas fisik, permainan bersama, dan nilai sportivitas.", "detail": "Silat dan futsal tercantum dalam dokumentasi pentas ekstrakurikuler Open House SDIT Al Ikhlas tahun 2022. Hubungi sekolah untuk pilihan olahraga dan jadwal yang tersedia saat ini." },
-    { "id": "keterampilan", "title": "Keterampilan Hidup", "subtitle": "Pengalaman belajar sehari-hari", "description": "Mengenal keterampilan praktis lewat pengalaman belajar bersama.", "detail": "Cooking Class dan Dokcil tercantum dalam dokumentasi pentas ekstrakurikuler Open House SDIT Al Ikhlas tahun 2022. Hubungi sekolah untuk kegiatan keterampilan yang tersedia saat ini." }
+    {
+      "id": "tahfidz",
+      "title": "Tahfidz Al-Qur’an",
+      "subtitle": "Dekat dengan Al-Qur’an",
+      "description": "Mengenal kegiatan membaca dan menghafal Al-Qur’an dalam pendidikan anak.",
+      "detail": "Tahfidz tercantum dalam dokumentasi kegiatan SDIT Al Ikhlas dan penelitian pendidikan Al-Qur’an di sekolah. Hubungi sekolah untuk target, metode, dan jadwal yang berlaku saat ini.",
+      "katalog": "SD"
+    },
+    {
+      "id": "pramuka",
+      "title": "Kepramukaan",
+      "subtitle": "Mandiri dan bertanggung jawab",
+      "description": "Ruang belajar tentang kerja sama, kemandirian, dan tanggung jawab.",
+      "detail": "Pramuka tercantum dalam dokumentasi pentas ekstrakurikuler Open House SDIT Al Ikhlas tahun 2022. Hubungi sekolah untuk memastikan ketersediaan dan jadwal tahun ajaran terbaru.",
+      "katalog": "SD"
+    },
+    {
+      "id": "kreativitas",
+      "title": "Seni & Kreativitas",
+      "subtitle": "Berani berkarya",
+      "description": "Mewarnai dan membuat karya sebagai cara anak mengekspresikan ide.",
+      "detail": "Art and Craft dan lomba mewarnai tercantum dalam dokumentasi Open House SDIT Al Ikhlas tahun 2022. Hubungi sekolah untuk kegiatan seni yang tersedia saat ini.",
+      "katalog": "SD"
+    },
+    {
+      "id": "robotik",
+      "title": "Robotik",
+      "subtitle": "Belajar melalui eksplorasi",
+      "description": "Mengenal teknologi dan pemecahan masalah melalui kegiatan robotik.",
+      "detail": "Robotik tercantum dalam dokumentasi pentas ekstrakurikuler Open House SDIT Al Ikhlas tahun 2022. Hubungi sekolah untuk informasi kelas dan jadwal terbaru.",
+      "katalog": "SD"
+    },
+    {
+      "id": "olahraga",
+      "title": "Olahraga",
+      "subtitle": "Aktif, sehat, dan sportif",
+      "description": "Mengenal aktivitas fisik, permainan bersama, dan nilai sportivitas.",
+      "detail": "Silat dan futsal tercantum dalam dokumentasi pentas ekstrakurikuler Open House SDIT Al Ikhlas tahun 2022. Hubungi sekolah untuk pilihan olahraga dan jadwal yang tersedia saat ini.",
+      "katalog": "SD"
+    },
+    {
+      "id": "keterampilan",
+      "title": "Keterampilan Hidup",
+      "subtitle": "Pengalaman belajar sehari-hari",
+      "description": "Mengenal keterampilan praktis lewat pengalaman belajar bersama.",
+      "detail": "Cooking Class dan Dokcil tercantum dalam dokumentasi pentas ekstrakurikuler Open House SDIT Al Ikhlas tahun 2022. Hubungi sekolah untuk kegiatan keterampilan yang tersedia saat ini.",
+      "katalog": "SD"
+    }
   ],
   "gallery": [
-    { "id": "g1", "label": "Kegiatan belajar", "category": "Pembelajaran", "image": "" },
-    { "id": "g2", "label": "Belajar bersama", "category": "Pembelajaran", "image": "" },
-    { "id": "g3", "label": "Kegiatan Al-Qur’an", "category": "Pembelajaran", "image": "" },
-    { "id": "g4", "label": "Karya siswa", "category": "Kegiatan", "image": "" },
-    { "id": "g5", "label": "Ekstrakurikuler", "category": "Kegiatan", "image": "" },
-    { "id": "g6", "label": "Kegiatan olahraga", "category": "Kegiatan", "image": "" },
-    { "id": "g7", "label": "Ruang kelas", "category": "Fasilitas", "image": "" },
-    { "id": "g8", "label": "Lingkungan sekolah", "category": "Fasilitas", "image": "" },
-    { "id": "g9", "label": "Kegiatan sekolah", "category": "Kegiatan", "image": "" },
-    { "id": "g10", "label": "Ruang belajar", "category": "Fasilitas", "image": "" },
-    { "id": "g11", "label": "Kebersamaan siswa", "category": "Kegiatan", "image": "" },
-    { "id": "g12", "label": "Aktivitas di kelas", "category": "Pembelajaran", "image": "" }
+    {
+      "id": "g1",
+      "label": "Kegiatan belajar",
+      "category": "Pembelajaran",
+      "image": "",
+      "katalog": "SD"
+    },
+    {
+      "id": "g2",
+      "label": "Belajar bersama",
+      "category": "Pembelajaran",
+      "image": "",
+      "katalog": "SD"
+    },
+    {
+      "id": "g3",
+      "label": "Kegiatan Al-Qur’an",
+      "category": "Pembelajaran",
+      "image": "",
+      "katalog": "SD"
+    },
+    {
+      "id": "g4",
+      "label": "Karya siswa",
+      "category": "Kegiatan",
+      "image": "",
+      "katalog": "SD"
+    },
+    {
+      "id": "g5",
+      "label": "Ekstrakurikuler",
+      "category": "Kegiatan",
+      "image": "",
+      "katalog": "SD"
+    },
+    {
+      "id": "g6",
+      "label": "Kegiatan olahraga",
+      "category": "Kegiatan",
+      "image": "",
+      "katalog": "SD"
+    },
+    {
+      "id": "g7",
+      "label": "Ruang kelas",
+      "category": "Fasilitas",
+      "image": "",
+      "katalog": "SD"
+    },
+    {
+      "id": "g8",
+      "label": "Lingkungan sekolah",
+      "category": "Fasilitas",
+      "image": "",
+      "katalog": "SD"
+    },
+    {
+      "id": "g9",
+      "label": "Kegiatan sekolah",
+      "category": "Kegiatan",
+      "image": "",
+      "katalog": "SD"
+    },
+    {
+      "id": "g10",
+      "label": "Ruang belajar",
+      "category": "Fasilitas",
+      "image": "",
+      "katalog": "SD"
+    },
+    {
+      "id": "g11",
+      "label": "Kebersamaan siswa",
+      "category": "Kegiatan",
+      "image": "",
+      "katalog": "SD"
+    },
+    {
+      "id": "g12",
+      "label": "Aktivitas di kelas",
+      "category": "Pembelajaran",
+      "image": "",
+      "katalog": "SD"
+    }
   ],
   "articles": [],
   "contact": {
     "address": "Perum Masnaga, Jl. Nakula 6C, Jakasetia, Bekasi Selatan, Kota Bekasi, Jawa Barat",
-    "phone": "02182428054", "email": "sditalikhlas8686@gmail.com", "whatsapp": "", "registrationUrl": "",
-    "mapUrl": "https://www.google.com/maps/search/?api=1&query=SDIT+Al+Ikhlas+Jakasetia+Bekasi"
+    "phone": "02182428054",
+    "email": "sditalikhlas8686@gmail.com",
+    "whatsapp": "",
+    "registrationUrl": "",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=SDIT+Al+Ikhlas+Jakasetia+Bekasi",
+    "lokasiSingkat": "Jakasetia, Bekasi Selatan",
+    "namaKontak": "Administrasi SDIT Al Ikhlas"
   },
-  "socials": []
+  "socials": [],
+  "teks": {
+    "hero": {
+      "eyebrow": "YAYASAN AL IKHLAS 86",
+      "slides": [
+        {
+          "judul": "Tempat tumbuh\ngenerasi **berilmu\n& berakhlak.**",
+          "paragraf": "Mengenal, belajar, dan bertumbuh bersama keluarga besar Al Ikhlas di Bekasi Selatan."
+        },
+        {
+          "judul": "Awali perjalanan\n**pendidikan\nbersama kami.**",
+          "paragraf": "Kenali TKIT dan SDIT Al Ikhlas. Hubungi sekolah untuk informasi penerimaan peserta didik terbaru."
+        }
+      ],
+      "levels": [
+        "TK ISLAM TERPADU",
+        "SD ISLAM TERPADU"
+      ],
+      "captionJudul": "Al Ikhlas, rumah untuk bertumbuh.",
+      "captionLokasi": "Jakasetia · Bekasi Selatan"
+    },
+    "tentang": {
+      "judul": "Tentang Yayasan",
+      "subjudul": "Al Ikhlas 86",
+      "paragraf": [
+        "Yayasan Al Ikhlas 86 menaungi TK Islam Terpadu dan SD Islam Terpadu Al Ikhlas di Jakasetia, Bekasi Selatan.",
+        "Pendidikan menjadi perjalanan untuk mengembangkan ilmu dan kepribadian. Bersama keluarga, sekolah menjadi tempat anak mengenal nilai Islam dan menemukan potensi dirinya."
+      ],
+      "ribbonJudul": "Al Ikhlas",
+      "ribbonTeks": "Belajar. Berakhlak. Bertumbuh."
+    },
+    "profil": {
+      "pembuka": "Yayasan Al Ikhlas 86 menaungi TKIT dan SDIT Al Ikhlas di Jakasetia, Bekasi Selatan.",
+      "arah": "Pendidikan Al Ikhlas berorientasi pada ilmu dan kepribadian, dengan visi membentuk cendekiawan muslim dan muslim yang cendekia."
+    },
+    "nilai": [
+      {
+        "judul": "Pendidikan Terpadu",
+        "deskripsi": "Ilmu pengetahuan dan nilai Islam sebagai bekal tumbuh bersama."
+      },
+      {
+        "judul": "Pengembangan Potensi",
+        "deskripsi": "Ruang untuk mengenal minat, belajar, dan mengembangkan diri."
+      },
+      {
+        "judul": "Ilmu & Akhlak",
+        "deskripsi": "Pendidikan yang memberi perhatian pada ilmu dan kepribadian."
+      },
+      {
+        "judul": "Sinergi Keluarga",
+        "deskripsi": "Sekolah dan orang tua menjadi bagian perjalanan pendidikan anak."
+      }
+    ],
+    "jenjang": {
+      "judul": "Jenjang Pendidikan",
+      "deskripsi": "Temukan langkah pendidikan untuk putra-putri Anda bersama keluarga besar Al Ikhlas 86."
+    },
+    "keunggulan": {
+      "judul": "Mengapa Memilih\n**Al Ikhlas 86?**",
+      "butir": [
+        "Pendidikan Islam untuk ilmu dan kepribadian anak.",
+        "Jenjang TKIT dan SDIT dalam naungan satu yayasan.",
+        "SDIT Al Ikhlas tercatat dengan akreditasi A.",
+        "Mengenal Al-Qur’an dalam perjalanan pendidikan.",
+        "Berlokasi di lingkungan Jakasetia, Bekasi Selatan.",
+        "Membangun hubungan antara sekolah dan keluarga."
+      ]
+    },
+    "program": {
+      "judul": "Program Unggulan",
+      "deskripsi": "Mengenal bidang pengembangan siswa. Hubungi sekolah untuk program dan jadwal yang tersedia saat ini."
+    },
+    "pendaftaran": {
+      "judul": "Jadi bagian keluarga\n**Al Ikhlas 86**\nbersama kami.",
+      "deskripsi": "Setiap perjalanan besar dimulai dengan langkah pertama. Kenali pilihan pendidikan untuk putra-putri Anda.",
+      "catatan": "Jadwal dan biaya terbaru tersedia melalui administrasi sekolah."
+    },
+    "galeri": {
+      "judul": "Galeri Kegiatan",
+      "deskripsi": "Ruang untuk cerita, karya, dan kebersamaan di Al Ikhlas."
+    },
+    "banner": {
+      "judul": "AL IKHLAS **86**",
+      "slogan": "Menjadikan cendekiawan muslim\ndan muslim yang cendekia."
+    },
+    "berita": {
+      "judul": "Info Terbaru",
+      "deskripsi": "Informasi pendidikan, kegiatan sekolah, dan kabar keluarga Al Ikhlas."
+    },
+    "footer": {
+      "judul": "Sekolah Islam Terpadu\nAl Ikhlas 86",
+      "slogan": "Bersama dalam pendidikan.\nBertumbuh dalam kebaikan."
+    }
+  }
 }
