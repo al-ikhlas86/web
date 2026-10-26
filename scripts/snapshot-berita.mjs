@@ -10,8 +10,8 @@ import path from 'node:path';
 const API = (process.env.NEXT_PUBLIC_API_BERITA ?? 'https://app.yayasanalikhlas86.sch.id/mobile-api').replace(/\/$/, '');
 const SITUS = (process.env.SNAPSHOT_SITUS ?? 'https://yayasanalikhlas86.sch.id').replace(/\/$/, '');
 const KELUAR = process.env.SNAPSHOT_KELUAR ?? 'public/berita';
-const MAKS_BERITA = 12;
-const MAKS_FOTO_PER_BERITA = 4;
+const MAKS_BERITA = 60;
+const MAKS_FOTO_PER_BERITA = 6;
 const MAKS_BYTE = 2 * 1024 * 1024;
 const HOST_API = new URL(API).host;
 

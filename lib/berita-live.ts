@@ -2,6 +2,7 @@
 // Berjalan di browser pengunjung; gagal/offline = diam (halaman memakai konten bawaan). Semua isi diperlakukan sebagai TEKS.
 import type { Article } from '@/lib/site-content';
 import { withBase } from '@/lib/base-path';
+import { slugArtikel } from '@/lib/slug';
 
 export type LiveArticle = Article & { katalogLabel: string; foto: string[]; tautan: string[] };
 
@@ -79,4 +80,19 @@ export async function ambilBeritaLive(limit = 12): Promise<LiveArticle[]> {
   const cache = bacaCache();
   if (cache.length > 0) return cache;
   return petakanBerita(await ambilJson(withBase('/berita/snapshot.json'), 8000));
+}
+
+// Peta id berita -> alamat halaman artikelnya (/artikel/<alamat>/), dari snapshot yang dibuat saat build.
+// Hanya berita yang sudah masuk snapshot yang punya halaman sendiri; sisanya tampil di beranda saja.
+export async function ambilPetaHalaman(): Promise<Record<number, string>> {
+  const data = await ambilJson(withBase('/berita/snapshot.json'), 8000);
+  const peta: Record<number, string> = {};
+  for (const b of petakanMentah(data)) peta[b.id] = slugArtikel(b.id, b.judul);
+  return peta;
+}
+
+function petakanMentah(data: unknown): { id: number; judul: string }[] {
+  const daftar = (data as { data?: { berita?: { id?: unknown; judul?: unknown }[] } } | null)?.data?.berita;
+  if (!Array.isArray(daftar)) return [];
+  return daftar.flatMap((b) => (b && typeof b.id === 'number' && typeof b.judul === 'string' && b.judul.trim() ? [{ id: b.id, judul: b.judul.trim().slice(0, 300) }] : []));
 }

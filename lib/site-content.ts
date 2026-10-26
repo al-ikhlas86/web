@@ -31,6 +31,7 @@ export const teksSchema = z.object({
   banner: z.object({ judul: baris, slogan: baris }),
   berita: z.object({ judul: baris, deskripsi: paragraf }),
   footer: z.object({ judul: baris, slogan: baris }),
+  faq: z.object({ judul: baris, deskripsi: paragraf }).default({ judul: 'Pertanyaan yang Sering Diajukan', deskripsi: 'Jawaban singkat untuk hal yang paling sering ditanyakan.' }),
 });
 
 export const siteContentSchema = z.object({
@@ -47,6 +48,7 @@ export const siteContentSchema = z.object({
     lokasiSingkat: baris, namaKontak: baris,
   }),
   socials: z.array(z.object({ label: text, url: httpsLink })).max(6),
+  faq: z.array(z.object({ q: text, a: z.string().min(1).max(1000) })).max(12).default([]),
   teks: teksSchema,
 });
 
@@ -54,6 +56,7 @@ export type SiteContent = z.infer<typeof siteContentSchema>;
 export type Education = SiteContent['education'][number];
 export type Program = SiteContent['programs'][number];
 export type Teks = SiteContent['teks'];
+export type Faq = SiteContent['faq'][number];
 export type Article = SiteContent['articles'][number];
 
 export async function getSiteContent(): Promise<SiteContent> {

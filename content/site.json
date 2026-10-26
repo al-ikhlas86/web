@@ -178,6 +178,28 @@
     "namaKontak": "Administrasi SDIT Al Ikhlas"
   },
   "socials": [],
+  "faq": [
+    {
+      "q": "Apa itu Yayasan Al Ikhlas 86?",
+      "a": "Yayasan Al Ikhlas 86 menaungi TK Islam Terpadu (TKIT) dan SD Islam Terpadu (SDIT) Al Ikhlas di Jakasetia, Bekasi Selatan. Pendidikan di sini berorientasi pada ilmu dan kepribadian, dengan visi membentuk cendekiawan muslim dan muslim yang cendekia."
+    },
+    {
+      "q": "Di mana lokasi sekolah Al Ikhlas 86?",
+      "a": "Alamat: Perum Masnaga, Jl. Nakula 6C, Jakasetia, Bekasi Selatan, Kota Bekasi, Jawa Barat."
+    },
+    {
+      "q": "Jenjang pendidikan apa saja yang ada?",
+      "a": "Yayasan Al Ikhlas 86 memiliki dua jenjang: TK Islam Terpadu (TKIT Al Ikhlas) dan SD Islam Terpadu (SDIT Al Ikhlas)."
+    },
+    {
+      "q": "Bagaimana cara mendaftar?",
+      "a": "Untuk jadwal penerimaan, persyaratan, dan biaya pendidikan terbaru, silakan hubungi administrasi sekolah melalui telepon 02182428054 atau email sditalikhlas8686@gmail.com."
+    },
+    {
+      "q": "Apakah SDIT Al Ikhlas terakreditasi?",
+      "a": "SDIT Al Ikhlas tercatat dengan akreditasi A."
+    }
+  ],
   "teks": {
     "hero": {
       "eyebrow": "YAYASAN AL IKHLAS 86",
@@ -269,6 +291,10 @@
     "footer": {
       "judul": "Sekolah Islam Terpadu\nAl Ikhlas 86",
       "slogan": "Bersama dalam pendidikan.\nBertumbuh dalam kebaikan."
+    },
+    "faq": {
+      "judul": "Pertanyaan yang Sering Diajukan",
+      "deskripsi": "Jawaban singkat untuk hal yang paling sering ditanyakan tentang Al Ikhlas 86."
     }
   }
 }
