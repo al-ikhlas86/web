@@ -17,6 +17,7 @@ export default function SubpageShell({ content, children }: { content: SiteConte
           </Link>
           <nav className="sub-nav" aria-label="Navigasi halaman">
             <Link href="/">Beranda</Link>
+            <Link href="/profil/">Profil</Link>
             <Link href="/artikel/">Artikel</Link>
             <Link href="/#kontak">Kontak</Link>
           </nav>

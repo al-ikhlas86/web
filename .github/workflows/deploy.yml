@@ -29,6 +29,9 @@ jobs:
       - name: Snapshot berita (cadangan bila VPS mati)
         run: node scripts/snapshot-berita.mjs
         continue-on-error: true
+      - name: Snapshot profil tim (cadangan bila VPS mati)
+        run: node scripts/snapshot-tim.mjs
+        continue-on-error: true
       - run: npm run build
         env:
           GITHUB_PAGES: 'true'

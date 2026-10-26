@@ -668,7 +668,43 @@ html:has(.tour-page) { scroll-behavior: auto; scroll-padding-top: 0; }
 @media (max-width: 900px) { .article-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) {
   .article-grid { grid-template-columns: 1fr; }
-  .sub-nav { gap: 14px; font-size: 12px; }
+  .sub-topbar { flex-wrap: wrap; gap: 4px 16px; padding-block: 10px; min-height: 0; }
+  .sub-nav { gap: 6px 18px; font-size: 12px; flex-wrap: wrap; width: 100%; }
   .sub-title { font-size: 24px; }
   .article-tools .search-field { min-width: 0; width: 100%; }
+}
+
+/* ---- Profil Yayasan (pengurus, guru, tenaga kependidikan) ---- */
+.about-copy .button + .button { margin-left: 10px; }
+.tim-filters { margin-bottom: 24px; }
+.tim-group { margin-top: 34px; }
+.tim-group > h2 { margin-bottom: 8px; }
+.tim-bagian { margin-top: 24px; }
+.tim-bagian > h3 { font-size: 15px; font-weight: 760; color: var(--ink); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--yellow); display: inline-block; }
+.tim-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; }
+.tim-card { display: flex; flex-direction: column; text-align: left; border: 1px solid #e6efec; border-radius: 10px; overflow: hidden; background: white; padding: 0; transition: border-color .18s, transform .18s; }
+.tim-card:hover { border-color: #81b2a8; transform: translateY(-2px); }
+.tim-foto { display: block; aspect-ratio: 3 / 4; background: var(--mint); overflow: hidden; }
+.tim-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tim-inisial { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: linear-gradient(145deg, var(--mint-deep), #cfe8e3); color: var(--teal); font-size: 56px; font-weight: 800; }
+.tim-info { display: flex; flex-direction: column; gap: 4px; padding: 14px 15px 16px; }
+.tim-info strong { font-size: 13px; color: var(--ink); line-height: 1.5; }
+.tim-info small { font-size: 11px; color: var(--teal-dark); font-weight: 650; }
+.tim-info em { font-style: normal; font-size: 11px; color: var(--muted); line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-top: 4px; }
+.tim-dialog { width: min(780px, calc(100% - 28px)); }
+.tim-detail { display: grid; grid-template-columns: 260px 1fr; gap: 26px; align-items: start; }
+.tim-detail-foto { border-radius: 12px; overflow: hidden; background: var(--mint); aspect-ratio: 3 / 4; }
+.tim-detail-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tim-detail-foto .tim-inisial { font-size: 90px; }
+.tim-detail-teks h2 { font-size: 24px; }
+.tim-status { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.tim-status li { background: var(--mint); color: var(--teal-dark); font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 20px; }
+.tim-detail-teks p { margin-top: 14px; font-size: 13px; }
+.tim-detail-teks blockquote { margin: 18px 0 0; padding: 14px 18px; border-left: 4px solid var(--yellow); background: #fffbf0; border-radius: 0 8px 8px 0; font-size: 14px; line-height: 1.85; color: var(--ink); white-space: pre-line; }
+.tim-asal { display: block; margin-top: 18px; color: var(--muted); font-size: 11px; }
+@media (max-width: 640px) {
+  .tim-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .tim-detail { grid-template-columns: 1fr; }
+  .tim-detail-foto { max-width: 240px; margin-inline: auto; }
+  .tim-inisial { font-size: 44px; }
 }
