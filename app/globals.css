@@ -712,6 +712,13 @@ html:has(.tour-page) { scroll-behavior: auto; scroll-padding-top: 0; }
   /* Daftar /artikel memakai bentuk kartu yang SAMA dengan teaser "Info Terbaru" di beranda (gambar kiri, teks kanan). Aturan dasar
      .article-grid a.news-card { display: block } menimpa grid kartu beranda, jadi dikembalikan di sini. */
   .article-grid a.news-card { display: grid; }
+  /* Kartu lebih ringkas di HP (beranda dan /artikel): font lebih kecil, ringkasan maksimal 3 baris, tinggi gambar mengikuti isi. */
+  .news-card > .photo-slot { min-height: 0; }
+  .news-card-body { padding: 12px; }
+  .news-card-body > small { font-size: 11px; line-height: 1.4; }
+  .news-card-body h3 { font-size: 14px; line-height: 1.4; margin-top: 6px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+  .news-card-body p { font-size: 12px; line-height: 1.5; margin-top: 6px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-card-body > span { font-size: 12px; margin-top: 8px; }
   .article-tools { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .article-tools .gallery-filters { margin-bottom: 0; grid-template-columns: repeat(auto-fit, minmax(76px, 1fr)); }
   .article-tools .search-field { width: 100%; min-width: 0; }
