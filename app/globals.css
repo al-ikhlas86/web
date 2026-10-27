@@ -709,18 +709,10 @@ html:has(.tour-page) { scroll-behavior: auto; scroll-padding-top: 0; }
   .tim-inisial { font-size: 44px; }
 }
 @media (max-width: 599px) {
-  /* Kartu artikel (daftar /artikel dan teaser beranda): ditumpuk, gambar di atas dan TIDAK dipotong (poster berisi teks), teks di bawah.
-     Kolom gambar 104px sebelumnya memotong poster dan menyempitkan teks. */
-  .news-card { display: block; }
-  .news-card > .photo-slot { height: auto; min-height: 0; aspect-ratio: 1 / 1; background: var(--mint); }
-  .news-card > .photo-slot > img { object-fit: contain; object-position: center; }
-  .news-card-body { padding: 16px; }
-  .news-card-body > small { font-size: 12px; }
-  .news-card-body h3 { font-size: 17px; line-height: 1.5; margin-top: 8px; overflow-wrap: anywhere; }
-  .news-card-body p { font-size: 14px; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  /* Daftar /artikel memakai bentuk kartu yang SAMA dengan teaser "Info Terbaru" di beranda (gambar kiri, teks kanan). Aturan dasar
+     .article-grid a.news-card { display: block } menimpa grid kartu beranda, jadi dikembalikan di sini. */
+  .article-grid a.news-card { display: grid; }
   .article-tools { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  .article-tools .gallery-filters, .news-section .gallery-filters { margin-bottom: 14px; grid-template-columns: repeat(auto-fit, minmax(76px, 1fr)); }
-  .article-tools .gallery-filters { margin-bottom: 0; }
+  .article-tools .gallery-filters { margin-bottom: 0; grid-template-columns: repeat(auto-fit, minmax(76px, 1fr)); }
   .article-tools .search-field { width: 100%; min-width: 0; }
-  .article-cover img { max-height: none; object-fit: contain; }
 }
