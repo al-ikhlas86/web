@@ -33,6 +33,7 @@ export default function SubpageShell({ content, children }: { content: SiteConte
           <div>
             <a href={telepon}>{content.contact.phone}</a>
             <a href={`mailto:${content.contact.email}`}>{content.contact.email}</a>
+            <a href={`mailto:${content.contact.emailTkit}`}>{content.contact.emailTkit}</a>
           </div>
         </div>
         <div className="container footer-bottom"><small>© 2026 Yayasan Al Ikhlas 86. Seluruh hak cipta dilindungi.</small></div>

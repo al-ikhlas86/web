@@ -15,13 +15,13 @@ export function grafOrganisasi(c: SiteContent): Record<string, unknown> {
   const idYayasan = `${SITE_URL}/#yayasan`;
   const sekolah = c.education.map((e) => ({
     '@type': 'School', '@id': `${SITE_URL}/#${e.id}`, name: e.title, alternateName: e.shortTitle, description: e.description,
-    parentOrganization: { '@id': idYayasan }, address: alamat, telephone: c.contact.phone, email: c.contact.email, ...(e.image ? { image: mutlak(e.image) } : {}),
+    parentOrganization: { '@id': idYayasan }, address: alamat, telephone: c.contact.phone, email: /tk/i.test(`${e.id} ${e.shortTitle}`) ? c.contact.emailTkit : c.contact.email, ...(e.image ? { image: mutlak(e.image) } : {}),
   }));
   const graf: Record<string, unknown>[] = [
     {
       '@type': ['EducationalOrganization', 'Organization'], '@id': idYayasan, name: NAMA_YAYASAN, alternateName: ['Al Ikhlas 86', 'Al-Ikhlas 86'],
       url: `${SITE_URL}/`, logo: mutlak('/favicon/favicon.png'), image: mutlak(c.heroImage), description: c.teks.tentang.paragraf[0],
-      address: alamat, telephone: c.contact.phone, email: c.contact.email, areaServed: c.contact.lokasiSingkat,
+      address: alamat, telephone: c.contact.phone, email: [c.contact.email, c.contact.emailTkit], areaServed: c.contact.lokasiSingkat,
       ...(c.socials.length ? { sameAs: c.socials.map((s) => s.url) } : {}),
       subOrganization: c.education.map((e) => ({ '@id': `${SITE_URL}/#${e.id}` })),
     },

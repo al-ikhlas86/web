@@ -42,7 +42,7 @@ export const siteContentSchema = z.object({
   gallery: z.array(z.object({ id: text, label: text, category: z.enum(['Pembelajaran', 'Kegiatan', 'Fasilitas']), image: imageSource, katalog })).max(48),
   articles: z.array(z.object({ id: text, title: text, category: text, date: z.iso.date(), image: imageSource, excerpt: text, body: z.string().max(20000) })).max(50),
   contact: z.object({
-    address: text, phone: z.string().regex(/^\+?[0-9 ()-]{6,25}$/), email: z.string().email(),
+    address: text, phone: z.string().regex(/^\+?[0-9 ()-]{6,25}$/), email: z.string().email(), emailTkit: z.string().email(),
     whatsapp: z.string().regex(/^[0-9]{8,16}$/).or(z.literal('')),
     registrationUrl: httpsLink.or(z.literal('')), mapUrl: httpsLink,
     lokasiSingkat: baris, namaKontak: baris,
