@@ -27,6 +27,7 @@ import { CaretLeft } from '@phosphor-icons/react/dist/csr/CaretLeft';
 import { CaretRight } from '@phosphor-icons/react/dist/csr/CaretRight';
 import type { Article, Education, Program, SiteContent } from '@/lib/site-content';
 import { withBase } from '@/lib/base-path';
+import { srcsetUntuk } from '@/lib/gambar';
 import { ambilBeritaLive, ambilPetaHalaman, type LiveArticle } from '@/lib/berita-live';
 import Rich from '@/components/Rich';
 
@@ -51,14 +52,17 @@ type Modal =
   | { type: 'photo'; index: number }
   | { type: 'registration'; level: string };
 
-function PhotoSlot({ src, label, className = '', priority = false }: {
-  src: string; label: string; className?: string; priority?: boolean;
+function PhotoSlot({ src, label, className = '', priority = false, sizes }: {
+  src: string; label: string; className?: string; priority?: boolean; sizes?: string;
 }) {
   const [failedSource, setFailedSource] = useState('');
+  // Foto HD tetap dipakai di layar besar; HP mengambil varian kecil lewat srcset (dibuat saat build, lihat scripts/optimasi-gambar.mjs).
+  const srcSet = srcsetUntuk(src);
+  const ukuran = sizes ?? (priority ? '(max-width: 767px) 100vw, 55vw' : /lightbox|article-dialog/.test(className) ? '(max-width: 900px) 100vw, 900px' : '(max-width: 600px) 92vw, (max-width: 1100px) 50vw, 33vw');
   return (
     <div className={`photo-slot ${className}`}>
       {src && failedSource !== src ? (
-        <img src={withBase(src)} alt={label} loading={priority ? 'eager' : 'lazy'} decoding="async" onError={() => setFailedSource(src)} />
+        <img src={withBase(src)} srcSet={srcSet} sizes={srcSet ? ukuran : undefined} alt={label} loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : undefined} decoding="async" onError={() => setFailedSource(src)} />
       ) : (
         <div className="photo-empty">
           <Images size={30} weight="light" aria-hidden="true" />
@@ -73,7 +77,7 @@ function PhotoSlot({ src, label, className = '', priority = false }: {
 function Brand({ footer = false }: { footer?: boolean }) {
   return (
     <a href="#beranda" className={`brand ${footer ? 'brand-footer' : ''}`} aria-label="Al Ikhlas 86, kembali ke beranda">
-      <Image src={withBase("/favicon/favicon.png")} alt="Logo Yayasan Al Ikhlas 86" width={58} height={58} />
+      <Image src={withBase("/favicon/logo-120.webp")} alt="Logo Yayasan Al Ikhlas 86" width={58} height={58} />
       <span><strong>AL IKHLAS <b>86</b></strong><small>Yayasan Pendidikan Islam</small></span>
     </a>
   );
@@ -181,9 +185,9 @@ export default function SchoolHomepage({ content }: { content: SiteContent }) {
             <div className="hero-visual">
               <div className="hero-arch-outline" aria-hidden="true" />
               <div className="hero-photo">
-                {content.heroImage.startsWith('/images/') ? <Image src={withBase(content.heroImage)} alt="Gedung SDIT Al Ikhlas Jakasetia, versi foto yang diperbaiki dari foto sekolah" fill priority sizes="(max-width: 767px) 100vw, 55vw" /> : <PhotoSlot src={content.heroImage} label="Gedung SDIT Al Ikhlas" priority />}
+                <PhotoSlot src={content.heroImage} label="Gedung SDIT Al Ikhlas Jakasetia, versi foto yang diperbaiki dari foto sekolah" priority />
               </div>
-              <div className="hero-photo-caption"><span className="caption-logo"><Image src={withBase("/favicon/favicon.png")} alt="" width={36} height={36} /></span><span><strong>{t.hero.captionJudul}</strong><small>{t.hero.captionLokasi}</small></span></div>
+              <div className="hero-photo-caption"><span className="caption-logo"><Image src={withBase("/favicon/logo-120.webp")} alt="" width={36} height={36} /></span><span><strong>{t.hero.captionJudul}</strong><small>{t.hero.captionLokasi}</small></span></div>
             </div>
           </div>
           <div className="hero-slider-controls container"><button aria-label="Banner sebelumnya" onClick={() => geserSlide(-1)}><CaretLeft size={18} /></button><div className="slide-dots">{t.hero.slides.map((_, index) => <button key={index} aria-label={`Tampilkan banner ${index + 1}`} aria-pressed={slide === index} className={slide === index ? 'active' : ''} onClick={() => setSlide(index)} />)}</div><button aria-label="Banner berikutnya" onClick={() => geserSlide(1)}><CaretRight size={18} /></button></div>
@@ -201,7 +205,7 @@ export default function SchoolHomepage({ content }: { content: SiteContent }) {
         <section className="education-section section" id="pendidikan">
           <div className="education-background" aria-hidden="true" />
           <div className="container"><div className="education-heading"><h2>{t.jenjang.judul}</h2><p>{t.jenjang.deskripsi}</p></div>
-            <div className="education-grid">{content.education.map((item) => <article className="education-card" key={item.id}><div className="education-cover"><div className="education-brand"><Image src={withBase("/favicon/favicon.png")} alt="" width={31} height={31} /><strong>{item.shortTitle}</strong><small>{item.subtitle}</small></div><PhotoSlot src={item.image} label={`Foto ${item.shortTitle}`} /></div><div className="education-body"><h3>{item.title}</h3><p>{item.description}</p><button className="button button-teal button-small" onClick={() => setModal({ type: 'education', item })}>Tentang {item.shortTitle}</button></div></article>)}</div>
+            <div className="education-grid">{content.education.map((item) => <article className="education-card" key={item.id}><div className="education-cover"><div className="education-brand"><Image src={withBase("/favicon/logo-120.webp")} alt="" width={31} height={31} /><strong>{item.shortTitle}</strong><small>{item.subtitle}</small></div><PhotoSlot src={item.image} label={`Foto ${item.shortTitle}`} /></div><div className="education-body"><h3>{item.title}</h3><p>{item.description}</p><button className="button button-teal button-small" onClick={() => setModal({ type: 'education', item })}>Tentang {item.shortTitle}</button></div></article>)}</div>
           </div>
         </section>
 
@@ -213,7 +217,7 @@ export default function SchoolHomepage({ content }: { content: SiteContent }) {
 
         <section className="gallery-section section container" id="galeri"><div className="section-heading centered"><h2>{t.galeri.judul}</h2><p>{t.galeri.deskripsi}</p></div><div className="gallery-filters" aria-label="Kategori galeri">{categories.map((item) => <button key={item} aria-pressed={category === item} className={category === item ? 'active' : ''} onClick={() => setCategory(item)}>{item}</button>)}</div><div className="gallery-grid">{visibleGallery.map((item) => item.image ? <button className="gallery-photo-button" key={item.id} aria-label={`Lihat foto ${item.label}`} onClick={() => setModal({ type: 'photo', index: galleryPhotos.findIndex((photo) => photo.id === item.id) })}><PhotoSlot src={item.image} label={item.label} /></button> : <PhotoSlot key={item.id} src="" label={item.label} />)}</div>{visibleGallery.length === 0 && <div className="empty-state"><Images size={36} aria-hidden="true" /><p>Belum ada foto dalam kategori ini.</p></div>}<p className="gallery-note">{galleryPhotos.length === 0 ? 'Dokumentasi kegiatan sekolah akan segera ditambahkan.' : 'Klik foto untuk melihat dokumentasi lebih dekat.'}</p></section>
 
-        <section className="school-banner"><div className="container school-banner-content"><Image src={withBase("/favicon/favicon.png")} alt="" width={94} height={94} loading="eager" /><div><strong><Rich text={t.banner.judul} /></strong><p><Rich text={t.banner.slogan} /></p></div><button className="button button-yellow" onClick={() => openRegistration()}>Kenali Pendaftaran <ArrowRight size={18} aria-hidden="true" /></button><div className="banner-arch" aria-hidden="true"><img src={withBase("/images/islamic-arch.svg")} alt="" width={380} height={620} /></div></div></section>
+        <section className="school-banner"><div className="container school-banner-content"><Image src={withBase("/favicon/logo-120.webp")} alt="" width={94} height={94} loading="eager" /><div><strong><Rich text={t.banner.judul} /></strong><p><Rich text={t.banner.slogan} /></p></div><button className="button button-yellow" onClick={() => openRegistration()}>Kenali Pendaftaran <ArrowRight size={18} aria-hidden="true" /></button><div className="banner-arch" aria-hidden="true"><img src={withBase("/images/islamic-arch.svg")} alt="" width={380} height={620} /></div></div></section>
 
         <div className="welcome-strip article-strip"><div className="container"><span><House size={16} weight="fill" aria-hidden="true" /> Artikel & Informasi</span><button onClick={() => openRegistration()}>Informasi pendaftaran <ArrowRight size={15} aria-hidden="true" /></button></div></div>
 

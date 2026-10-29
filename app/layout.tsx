@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: { card: 'summary_large_image', title: 'Yayasan Al Ikhlas 86', description: DESKRIPSI, images: ['/images/al-ikhlas-hero.webp'] },
   icons: {
-    icon: withBase('/favicon/favicon.png'),
+    icon: withBase('/favicon/favicon-192.png'),
   },
 };
 

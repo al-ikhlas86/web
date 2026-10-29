@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { X } from '@phosphor-icons/react/dist/csr/X';
 import { withBase } from '@/lib/base-path';
+import { srcsetUntuk } from '@/lib/gambar';
 
 export type KartuOrang = {
   kunci: string; nama: string; status: string[]; mapel: string[]; deskripsi: string; foto: string;
@@ -66,7 +67,7 @@ export default function ProfilTim({ orang, katalog }: { orang: KartuOrang[]; kat
               <div className="tim-grid">
                 {b.daftar.map((o) => (
                   <button type="button" className="tim-card" key={o.kunci} onClick={() => setDetail(o)} aria-label={`Lihat profil ${o.nama}`}>
-                    <span className="tim-foto">{o.foto ? <img src={withBase(o.foto)} alt="" loading="lazy" decoding="async" /> : <span className="tim-inisial" aria-hidden="true">{inisial(o.nama)}</span>}</span>
+                    <span className="tim-foto">{o.foto ? <img src={withBase(o.foto)} srcSet={srcsetUntuk(o.foto)} sizes="120px" alt="" loading="lazy" decoding="async" /> : <span className="tim-inisial" aria-hidden="true">{inisial(o.nama)}</span>}</span>
                     <span className="tim-info"><strong>{o.nama}</strong><small>{o.status[0]}</small>{o.deskripsi && <em>{o.deskripsi}</em>}</span>
                   </button>
                 ))}
@@ -80,7 +81,7 @@ export default function ProfilTim({ orang, katalog }: { orang: KartuOrang[]; kat
           <button ref={tutupRef} className="dialog-close" aria-label="Tutup" onClick={() => setDetail(null)}><X size={23} /></button>
           {detail && (
             <div className="tim-detail">
-              <div className="tim-detail-foto">{detail.foto ? <img src={withBase(detail.foto)} alt={detail.nama} decoding="async" /> : <span className="tim-inisial" aria-hidden="true">{inisial(detail.nama)}</span>}</div>
+              <div className="tim-detail-foto">{detail.foto ? <img src={withBase(detail.foto)} srcSet={srcsetUntuk(detail.foto)} sizes="(max-width: 600px) 240px, 320px" alt={detail.nama} decoding="async" /> : <span className="tim-inisial" aria-hidden="true">{inisial(detail.nama)}</span>}</div>
               <div className="tim-detail-teks">
                 <h2 id="tim-judul">{detail.nama}</h2>
                 <ul className="tim-status">{detail.status.map((s) => <li key={s}>{s}</li>)}</ul>

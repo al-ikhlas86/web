@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { MagnifyingGlass } from '@phosphor-icons/react/dist/csr/MagnifyingGlass';
 import { withBase } from '@/lib/base-path';
+import { srcsetUntuk } from '@/lib/gambar';
 
 export type KartuArtikel = { slug: string; judul: string; ringkasan: string; tanggal: string; katalog: string; cover: string };
 const PER_HALAMAN = 12;
@@ -37,7 +38,7 @@ export default function DaftarArtikel({ items }: { items: KartuArtikel[] }) {
         <div className="news-grid article-grid">
           {hasil.slice(0, tampil).map((a) => (
             <Link key={a.slug} href={`/artikel/${a.slug}/`} className="news-card">
-              <div className="photo-slot">{a.cover ? <img src={withBase(a.cover)} alt="" loading="lazy" decoding="async" /> : <div className="photo-empty"><span>{a.katalog}</span></div>}</div>
+              <div className="photo-slot">{a.cover ? <img src={withBase(a.cover)} srcSet={srcsetUntuk(a.cover)} sizes="(max-width: 600px) 110px, (max-width: 1100px) 50vw, 360px" alt="" loading="lazy" decoding="async" /> : <div className="photo-empty"><span>{a.katalog}</span></div>}</div>
               <div className="news-card-body"><small>{tgl(a.tanggal)} · {a.katalog}</small><h3>{a.judul}</h3><p>{a.ringkasan}</p></div>
             </Link>
           ))}

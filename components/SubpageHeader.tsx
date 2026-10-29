@@ -33,7 +33,7 @@ export default function SubpageHeader({ kontak }: { kontak: Kontak }) {
       <header className="site-header">
         <div className="topbar container">
           <Link href="/" className="brand" aria-label="Al Ikhlas 86, kembali ke beranda">
-            <Image src={withBase('/favicon/favicon.png')} alt="Logo Yayasan Al Ikhlas 86" width={58} height={58} />
+            <Image src={withBase('/favicon/logo-120.webp')} alt="Logo Yayasan Al Ikhlas 86" width={58} height={58} />
             <span><strong>AL IKHLAS <b>86</b></strong><small>Yayasan Pendidikan Islam</small></span>
           </Link>
           <div className="header-contact"><span>Mari terhubung</span><a href={telepon} aria-label="Telepon sekolah"><Phone size={18} aria-hidden="true" /></a><a href={`mailto:${kontak.email},${kontak.emailTkit}`} aria-label="Email sekolah (SDIT dan TKIT)"><EnvelopeSimple size={18} aria-hidden="true" /></a><a href={kontak.mapUrl} target="_blank" rel="noopener noreferrer" aria-label="Lokasi sekolah"><MapPin size={18} aria-hidden="true" /></a></div>

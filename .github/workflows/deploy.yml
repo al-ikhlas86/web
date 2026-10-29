@@ -32,6 +32,9 @@ jobs:
       - name: Snapshot profil tim (cadangan bila VPS mati)
         run: node scripts/snapshot-tim.mjs
         continue-on-error: true
+      - name: Buat varian ukuran foto (HD tetap, HP memuat versi kecil)
+        run: node scripts/optimasi-gambar.mjs
+        continue-on-error: true
       - run: npm run build
         env:
           GITHUB_PAGES: 'true'
