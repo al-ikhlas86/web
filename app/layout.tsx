@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { withBase } from '@/lib/base-path';
+import GulirHalus from '@/components/GulirHalus';
 import { SITE_URL } from '@/lib/seo';
 
 const jakarta = Plus_Jakarta_Sans({
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id" className={jakarta.variable}>
-      <body className={`${jakarta.className} antialiased`}>{children}</body>
+      <body className={`${jakarta.className} antialiased`}><GulirHalus />{children}</body>
     </html>
   );
 }

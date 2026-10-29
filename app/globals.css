@@ -12,7 +12,9 @@
   --muted: #526766;
 }
 
-html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+/* Dasar `auto`: tombol kembali memulihkan posisi gulir langsung di tempatnya. Gulir halus hanya saat klik tautan # (kelas dipasang GulirHalus.tsx). */
+html { scroll-behavior: auto; scroll-padding-top: 88px; }
+html.gulir-halus { scroll-behavior: smooth; }
 body { margin: 0; background: white; color: var(--ink); font-family: var(--font-jakarta), sans-serif; font-size: 14px; }
 button, input { font: inherit; }
 button, a, input { -webkit-tap-highlight-color: transparent; }
@@ -575,7 +577,7 @@ html:has(.tour-page) { scroll-behavior: auto; scroll-padding-top: 0; }
   .tour-unavailable > div { max-width: 48%; padding: 12px; border-radius: 12px; background: rgb(0 0 0 / 65%); }
 }
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html, html.gulir-halus { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
