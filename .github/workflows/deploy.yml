@@ -46,7 +46,23 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment2.outputs.page_url || steps.deployment3.outputs.page_url }}
     steps:
+      # GitHub Pages kadang membalas 502 "Server Error" saat membuat deployment (2026-10-29, build sukses tapi tidak tayang sehingga
+      # editor Kelola Website melapor "GAGAL dibangun ulang"). Gangguan sementara di sisi GitHub: dicoba sampai 3x dengan jeda.
       - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - name: Jeda sebelum mencoba tayang lagi (percobaan 2)
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 45
+      - id: deployment2
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - name: Jeda sebelum mencoba tayang lagi (percobaan 3)
+        if: steps.deployment.outcome == 'failure' && steps.deployment2.outcome == 'failure'
+        run: sleep 90
+      - id: deployment3
+        if: steps.deployment.outcome == 'failure' && steps.deployment2.outcome == 'failure'
         uses: actions/deploy-pages@v4
