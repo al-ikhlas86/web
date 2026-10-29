@@ -1,6 +1,6 @@
 {
   "heroImage": "/images/al-ikhlas-hero.webp",
-  "aboutImage": "",
+  "aboutImage": "/uploads/20261029-9fea03f1c15a.webp",
   "benefitsImage": "",
   "registrationImages": [
     "",
@@ -26,7 +26,7 @@
       "subtitle": "Ilmu, iman, dan akhlak",
       "description": "Mengenal pendidikan dasar Islam terpadu Al Ikhlas di Jakasetia, Bekasi Selatan.",
       "detail": "SDIT Al Ikhlas adalah sekolah dasar swasta di bawah Yayasan Al Ikhlas 86, beralamat di Perum Masnaga, Jalan Nakula 6C, Jakasetia, Bekasi Selatan, dengan NPSN 20223227. Hubungi sekolah untuk informasi kurikulum dan penerimaan siswa terbaru.",
-      "image": "",
+      "image": "/uploads/20261029-1ee8f8f95856.webp",
       "katalog": "SD"
     }
   ],
@@ -113,7 +113,7 @@
       "id": "g5",
       "label": "Ekstrakurikuler",
       "category": "Kegiatan",
-      "image": "",
+      "image": "/uploads/20261029-8163bb4d3f0c.webp",
       "katalog": "SD"
     },
     {
