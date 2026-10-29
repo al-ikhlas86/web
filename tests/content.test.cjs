@@ -22,9 +22,10 @@ function loadContentModule(env = {}, fetch = async () => { throw new Error('Unex
 
 test('local content works with no CMS configured', async () => {
   const result = await loadContentModule().getSiteContent();
-  assert.equal(result.heroImage, '/images/al-ikhlas-hero.webp');
-  assert.equal(result.gallery.filter((item) => item.image).length, 0);
-  assert.equal(result.articles.length, 0);
+  // Isi website diubah lewat Kelola Website (foto banner, galeri, dst), jadi yang diperiksa STRUKTURNYA, bukan isi tertentu.
+  assert.ok(typeof result.heroImage === 'string' && result.heroImage.startsWith('/'));
+  assert.ok(Array.isArray(result.gallery) && result.gallery.every((item) => typeof item.image === 'string'));
+  assert.ok(Array.isArray(result.articles));
 });
 
 test('remote photos and articles load while auth stays on the server', async () => {
