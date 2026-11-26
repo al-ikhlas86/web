@@ -740,3 +740,12 @@ html:has(.tour-page) { scroll-behavior: auto; scroll-padding-top: 0; }
 .daftar-jenjang span { color: var(--muted); font-size: 13px; }
 .daftar-catatan { margin-top: 28px; color: var(--muted); font-size: 13px; }
 @media (max-width: 640px) { .daftar-aksi .button { width: 100%; justify-content: center; min-height: 48px; } }
+
+.hubungi-admin { position: relative; display: inline-block; }
+.hubungi-menu { position: absolute; z-index: 20; top: calc(100% + 8px); left: 0; min-width: 270px; background: white; border: 1px solid var(--mint-deep); border-radius: 14px; box-shadow: 0 10px 28px rgba(0, 60, 60, .18); padding: 8px; display: grid; gap: 6px; }
+.hubungi-menu p { font-size: 12px; color: var(--muted); padding: 4px 8px 0; }
+.hubungi-menu a { display: flex; flex-direction: column; gap: 1px; padding: 11px 14px; border-radius: 10px; background: var(--mint); min-height: 48px; justify-content: center; }
+.hubungi-menu a:hover { background: var(--mint-deep); }
+.hubungi-menu strong { color: var(--teal-dark); font-size: 15px; }
+.hubungi-menu span { color: var(--muted); font-size: 12.5px; }
+@media (max-width: 640px) { .hubungi-admin { width: 100%; } .hubungi-admin > .button { width: 100%; } .hubungi-menu { left: 0; right: 0; min-width: 0; } }

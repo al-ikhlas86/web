@@ -27,6 +27,10 @@ export const teksSchema = z.object({
   keunggulan: z.object({ judul: baris, butir: z.array(baris).min(1).max(10) }),
   program: z.object({ judul: baris, deskripsi: paragraf }),
   pendaftaran: z.object({ judul: baris, deskripsi: paragraf, catatan: paragraf }),
+  pendaftaranHalaman: z.object({ judulAlur: baris, langkah: z.array(z.object({ judul: baris, isi: paragraf })).min(1).max(8), judulJenjang: baris }).default({
+    judulAlur: 'Alur pendaftaran online', judulJenjang: 'Jenjang yang dibuka',
+    langkah: [{"judul": "Pilih gelombang", "isi": "Buka halaman pendaftaran dan pilih gelombang yang sedang dibuka untuk jenjang putra-putri Anda."}, {"judul": "Isi data awal", "isi": "Tuliskan nama orang tua, nama calon siswa, email, dan nomor WhatsApp yang aktif."}, {"judul": "Bayar biaya pendaftaran", "isi": "Tagihan muncul sesuai gelombang. Setelah pembayaran diterima, formulir lengkap terbuka."}, {"judul": "Isi formulir", "isi": "Lengkapi data calon siswa dan orang tua. Belum sempat? Simpan Key formulir yang dikirim ke email, lalu lanjutkan kapan saja tanpa membayar lagi."}, {"judul": "Pantau status", "isi": "Cek status pendaftaran, jadwal tes, dan pengumuman dengan nomor pendaftaran dan Key Anda."}],
+  }),
   galeri: z.object({ judul: baris, deskripsi: paragraf }),
   banner: z.object({ judul: baris, slogan: baris }),
   berita: z.object({ judul: baris, deskripsi: paragraf }),
@@ -44,6 +48,7 @@ export const siteContentSchema = z.object({
   contact: z.object({
     address: text, phone: z.string().regex(/^\+?[0-9 ()-]{6,25}$/), email: z.string().email(), emailTkit: z.string().email(),
     whatsapp: z.string().regex(/^[0-9]{8,16}$/).or(z.literal('')),
+    whatsappTk: z.string().regex(/^[0-9]{8,16}$/).or(z.literal('')).default(''),
     registrationUrl: httpsLink.or(z.literal('')), mapUrl: httpsLink,
     lokasiSingkat: baris, namaKontak: baris,
   }),

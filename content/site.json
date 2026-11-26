@@ -172,11 +172,12 @@
     "phone": "02182428054",
     "email": "sdit@yayasanalikhlas86.sch.id",
     "emailTkit": "tkit@yayasanalikhlas86.sch.id",
-    "whatsapp": "",
+    "whatsapp": "628993290401",
     "registrationUrl": "https://app.yayasanalikhlas86.sch.id/mobile-api/api/public/psb",
     "mapUrl": "https://www.google.com/maps/search/?api=1&query=SDIT+Al+Ikhlas+Jakasetia+Bekasi",
     "lokasiSingkat": "Jakasetia, Bekasi Selatan",
-    "namaKontak": "Administrasi SDIT Al Ikhlas"
+    "namaKontak": "Administrasi SDIT Al Ikhlas",
+    "whatsappTk": "62895335999919"
   },
   "socials": [],
   "faq": [
@@ -297,6 +298,32 @@
     "faq": {
       "judul": "Pertanyaan yang Sering Diajukan",
       "deskripsi": "Jawaban singkat untuk hal yang paling sering ditanyakan tentang Al Ikhlas 86."
+    },
+    "pendaftaranHalaman": {
+      "judulAlur": "Alur pendaftaran online",
+      "langkah": [
+        {
+          "judul": "Pilih gelombang",
+          "isi": "Buka halaman pendaftaran dan pilih gelombang yang sedang dibuka untuk jenjang putra-putri Anda."
+        },
+        {
+          "judul": "Isi data awal",
+          "isi": "Tuliskan nama orang tua, nama calon siswa, email, dan nomor WhatsApp yang aktif."
+        },
+        {
+          "judul": "Bayar biaya pendaftaran",
+          "isi": "Tagihan muncul sesuai gelombang. Setelah pembayaran diterima, formulir lengkap terbuka."
+        },
+        {
+          "judul": "Isi formulir",
+          "isi": "Lengkapi data calon siswa dan orang tua. Belum sempat? Simpan Key formulir yang dikirim ke email, lalu lanjutkan kapan saja tanpa membayar lagi."
+        },
+        {
+          "judul": "Pantau status",
+          "isi": "Cek status pendaftaran, jadwal tes, dan pengumuman dengan nomor pendaftaran dan Key Anda."
+        }
+      ],
+      "judulJenjang": "Jenjang yang dibuka"
     }
   }
 }

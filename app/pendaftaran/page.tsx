@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import SubpageShell from '@/components/SubpageShell';
 import Rich from '@/components/Rich';
+import HubungiAdmin from '@/components/HubungiAdmin';
 import { getSiteContent } from '@/lib/site-content';
 import { SITE_URL } from '@/lib/seo';
 
@@ -10,14 +11,6 @@ export const metadata: Metadata = {
   alternates: { canonical: '/pendaftaran/' },
   openGraph: { title: 'Pendaftaran Siswa Baru Al Ikhlas 86', description: 'Alur pendaftaran online TKIT dan SDIT Al Ikhlas.', url: `${SITE_URL}/pendaftaran/`, type: 'website' },
 };
-
-const LANGKAH = [
-  ['Pilih gelombang', 'Buka halaman pendaftaran dan pilih gelombang yang sedang dibuka untuk jenjang putra-putri Anda.'],
-  ['Isi data awal', 'Tuliskan nama orang tua, nama calon siswa, email, dan nomor WhatsApp yang aktif.'],
-  ['Bayar biaya pendaftaran', 'Tagihan muncul sesuai gelombang. Setelah pembayaran diterima, formulir lengkap terbuka.'],
-  ['Isi formulir', 'Lengkapi data calon siswa dan orang tua. Belum sempat? Simpan Key formulir yang dikirim ke email, lalu lanjutkan kapan saja tanpa membayar lagi.'],
-  ['Pantau status', 'Cek status pendaftaran, jadwal tes, dan pengumuman dengan nomor pendaftaran dan Key Anda.'],
-];
 
 export default async function HalamanPendaftaran() {
   const c = await getSiteContent();
@@ -34,13 +27,13 @@ export default async function HalamanPendaftaran() {
         </div>
         <div className="daftar-aksi">
           <a className="button button-yellow" href={daftar} {...(luar ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>Daftarkan siswa</a>
-          <a className="button button-teal" href={telepon}>Hubungi administrasi</a>
+          <HubungiAdmin pilihan={[{ label: 'SD', nomor: c.contact.whatsapp }, { label: 'TK & PG', nomor: c.contact.whatsappTk }]} telepon={telepon} />
         </div>
-        <h2 className="daftar-judul">Alur pendaftaran online</h2>
+        <h2 className="daftar-judul">{t.pendaftaranHalaman.judulAlur}</h2>
         <ol className="daftar-langkah">
-          {LANGKAH.map(([judul, isi]) => <li key={judul}><strong>{judul}</strong><span>{isi}</span></li>)}
+          {t.pendaftaranHalaman.langkah.map((l) => <li key={l.judul}><strong>{l.judul}</strong><span>{l.isi}</span></li>)}
         </ol>
-        <h2 className="daftar-judul">Jenjang yang dibuka</h2>
+        <h2 className="daftar-judul">{t.pendaftaranHalaman.judulJenjang}</h2>
         <ul className="daftar-jenjang">
           {c.education.map((e) => <li key={e.id}><strong>{e.title}</strong><span>{e.subtitle}</span></li>)}
         </ul>
