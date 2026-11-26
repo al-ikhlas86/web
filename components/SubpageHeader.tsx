@@ -12,7 +12,7 @@ import { MapPin } from '@phosphor-icons/react/dist/csr/MapPin';
 import { withBase } from '@/lib/base-path';
 
 type Kontak = { phone: string; email: string; emailTkit: string; mapUrl: string };
-const MENU: [string, string][] = [['Beranda', '/'], ['Profil', '/profil/'], ['Artikel', '/artikel/'], ['Kontak', '/#kontak']];
+const MENU: [string, string][] = [['Beranda', '/'], ['Profil', '/profil/'], ['Pendaftaran', '/pendaftaran/'], ['Artikel', '/artikel/'], ['Kontak', '/#kontak']];
 
 // Header halaman dalam: bentuk dan perilaku SAMA dengan header beranda (logo + tombol Menu di HP, panel menu hijau, bilah menu di desktop).
 export default function SubpageHeader({ kontak }: { kontak: Kontak }) {
