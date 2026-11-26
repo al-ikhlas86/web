@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/artikel/`, lastModified: terbaru, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE_URL}/profil/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/pendaftaran/`, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${SITE_URL}/privasi/`, changeFrequency: 'yearly', priority: 0.2 },
     { url: `${SITE_URL}/virtual-tour/`, changeFrequency: 'yearly', priority: 0.5 },
     ...artikel.map((a) => ({ url: `${SITE_URL}/artikel/${a.slug}/`, lastModified: new Date(`${a.tanggal}T00:00:00+07:00`), changeFrequency: 'yearly' as const, priority: 0.6 })),
   ];
