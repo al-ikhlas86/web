@@ -1,13 +1,14 @@
 import { daftarArtikel } from '@/lib/artikel';
 import { daftarTim } from '@/lib/tim';
-import { getSiteContent } from '@/lib/site-content';
+import { getSiteTerpadu } from '@/lib/katalog';
+import { kontakDari } from '@/lib/katalog-tipe';
 import { NAMA_YAYASAN, SITE_URL } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 
 // Ringkasan situs untuk asisten AI (usulan llms.txt): fakta inti dan tautan penting, dibuat otomatis dari isi website.
 export async function GET() {
-  const c = await getSiteContent();
+  const c = await getSiteTerpadu();
   const artikel = daftarArtikel().slice(0, 20);
   const baris: string[] = [
     `# ${NAMA_YAYASAN}`,
@@ -19,9 +20,7 @@ export async function GET() {
     `- Jenjang: ${c.education.map((e) => e.title).join('; ')}`,
     `- Alamat: ${c.contact.address}`,
     `- Telepon: ${c.contact.phone}`,
-    `- Email SDIT: ${c.contact.email}`,
-    `- Email TKIT: ${c.contact.emailTkit}`,
-    ...(c.contact.whatsapp ? [`- WhatsApp: https://wa.me/${c.contact.whatsapp}`] : []),
+    ...kontakDari(c).flatMap((k) => [...(k.email ? [`- Email ${k.nama}: ${k.email}`] : []), ...(k.whatsapp ? [`- WhatsApp ${k.nama}: https://wa.me/${k.whatsapp}`] : [])]),
     `- Peta: ${c.contact.mapUrl}`,
     `- Situs resmi: ${SITE_URL}/`,
     ...c.socials.map((s) => `- ${s.label}: ${s.url}`),

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import SubpageShell from '@/components/SubpageShell';
-import { getSiteContent } from '@/lib/site-content';
+import { getSiteTerpadu } from '@/lib/katalog';
 import { SITE_URL } from '@/lib/seo';
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const TERAKHIR = '27 November 2026';
 
 export default async function HalamanPrivasi() {
-  const c = await getSiteContent();
+  const c = await getSiteTerpadu();
   return (
     <SubpageShell content={c}>
       <section className="container section sub-section">

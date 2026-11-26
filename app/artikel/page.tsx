@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import SubpageShell from '@/components/SubpageShell';
 import DaftarArtikel from '@/components/DaftarArtikel';
 import { daftarArtikel } from '@/lib/artikel';
-import { getSiteContent } from '@/lib/site-content';
+import { getSiteTerpadu } from '@/lib/katalog';
 import { SITE_URL, jsonLdAman, mutlak } from '@/lib/seo';
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HalamanArtikel() {
-  const [content, artikel] = [await getSiteContent(), daftarArtikel()];
+  const [content, artikel] = [await getSiteTerpadu(), daftarArtikel()];
   const kartu = artikel.map((a) => ({ slug: a.slug, judul: a.judul, ringkasan: a.ringkasan, tanggal: a.tanggal, katalog: a.katalog, cover: a.cover }));
   const graf = {
     '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Semua Artikel Al Ikhlas 86', url: `${SITE_URL}/artikel/`, inLanguage: 'id-ID',

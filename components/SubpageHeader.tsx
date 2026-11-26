@@ -11,7 +11,7 @@ import { EnvelopeSimple } from '@phosphor-icons/react/dist/csr/EnvelopeSimple';
 import { MapPin } from '@phosphor-icons/react/dist/csr/MapPin';
 import { withBase } from '@/lib/base-path';
 
-type Kontak = { phone: string; email: string; emailTkit: string; mapUrl: string };
+type Kontak = { phone: string; emails: string[]; mapUrl: string };
 const MENU: [string, string][] = [['Beranda', '/'], ['Profil', '/profil/'], ['Pendaftaran', '/pendaftaran/'], ['Artikel', '/artikel/'], ['Kontak', '/#kontak']];
 
 // Header halaman dalam: bentuk dan perilaku SAMA dengan header beranda (logo + tombol Menu di HP, panel menu hijau, bilah menu di desktop).
@@ -36,7 +36,7 @@ export default function SubpageHeader({ kontak }: { kontak: Kontak }) {
             <Image src={withBase('/favicon/logo-120.webp')} alt="Logo Yayasan Al Ikhlas 86" width={58} height={58} />
             <span><strong>AL IKHLAS <b>86</b></strong><small>Yayasan Pendidikan Islam</small></span>
           </Link>
-          <div className="header-contact"><span>Mari terhubung</span><a href={telepon} aria-label="Telepon sekolah"><Phone size={18} aria-hidden="true" /></a><a href={`mailto:${kontak.email},${kontak.emailTkit}`} aria-label="Email sekolah (SDIT dan TKIT)"><EnvelopeSimple size={18} aria-hidden="true" /></a><a href={kontak.mapUrl} target="_blank" rel="noopener noreferrer" aria-label="Lokasi sekolah"><MapPin size={18} aria-hidden="true" /></a></div>
+          <div className="header-contact"><span>Mari terhubung</span><a href={telepon} aria-label="Telepon sekolah"><Phone size={18} aria-hidden="true" /></a><a href={`mailto:${kontak.emails.join(',')}`} aria-label="Email sekolah"><EnvelopeSimple size={18} aria-hidden="true" /></a><a href={kontak.mapUrl} target="_blank" rel="noopener noreferrer" aria-label="Lokasi sekolah"><MapPin size={18} aria-hidden="true" /></a></div>
           <button ref={toggleRef} className="mobile-toggle" aria-expanded={buka} aria-controls="main-navigation" aria-label={buka ? 'Tutup menu' : 'Buka menu'} onClick={() => setBuka(!buka)}>{buka ? <X size={22} /> : <List size={22} />}<span>{buka ? 'Tutup' : 'Menu'}</span></button>
         </div>
       </header>

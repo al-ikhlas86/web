@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import SubpageShell from '@/components/SubpageShell';
 import { daftarArtikel } from '@/lib/artikel';
-import { getSiteContent } from '@/lib/site-content';
+import { getSiteTerpadu } from '@/lib/katalog';
 import { NAMA_YAYASAN, SITE_URL, jsonLdAman, mutlak } from '@/lib/seo';
 import { withBase } from '@/lib/base-path';
 
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function HalamanArtikelTunggal({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const content = await getSiteContent();
+  const content = await getSiteTerpadu();
   const a = daftarArtikel().find((x) => x.slug === slug);
   if (!a) notFound();
   const paragraf = a.isi.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);

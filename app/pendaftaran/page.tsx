@@ -2,18 +2,22 @@ import type { Metadata } from 'next';
 import SubpageShell from '@/components/SubpageShell';
 import Rich from '@/components/Rich';
 import HubungiAdmin from '@/components/HubungiAdmin';
-import { getSiteContent } from '@/lib/site-content';
+import { getSiteTerpadu } from '@/lib/katalog';
+import { kontakDari, namaJenjang } from '@/lib/katalog-tipe';
 import { SITE_URL } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Pendaftaran Siswa Baru TKIT & SDIT Al Ikhlas',
-  description: 'Informasi dan alur pendaftaran online siswa baru TKIT dan SDIT Al Ikhlas di Jakasetia, Bekasi Selatan: pilih gelombang, bayar, isi formulir, dan pantau status.',
-  alternates: { canonical: '/pendaftaran/' },
-  openGraph: { title: 'Pendaftaran Siswa Baru Al Ikhlas 86', description: 'Alur pendaftaran online TKIT dan SDIT Al Ikhlas.', url: `${SITE_URL}/pendaftaran/`, type: 'website' },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const jenjang = namaJenjang(await getSiteTerpadu());
+  return {
+    title: `Pendaftaran Siswa Baru ${jenjang} Al Ikhlas`,
+    description: `Informasi dan alur pendaftaran online siswa baru ${jenjang} Al Ikhlas di Jakasetia, Bekasi Selatan: pilih gelombang, bayar, isi formulir, dan pantau status.`,
+    alternates: { canonical: '/pendaftaran/' },
+    openGraph: { title: 'Pendaftaran Siswa Baru Al Ikhlas 86', description: `Alur pendaftaran online ${jenjang} Al Ikhlas.`, url: `${SITE_URL}/pendaftaran/`, type: 'website' },
+  };
+}
 
 export default async function HalamanPendaftaran() {
-  const c = await getSiteContent();
+  const c = await getSiteTerpadu();
   const t = c.teks;
   const telepon = `tel:${c.contact.phone.replace(/[^+0-9]/g, '')}`;
   const daftar = c.contact.registrationUrl || (c.contact.whatsapp ? `https://wa.me/${c.contact.whatsapp}` : telepon);
@@ -27,7 +31,7 @@ export default async function HalamanPendaftaran() {
         </div>
         <div className="daftar-aksi">
           <a className="button button-yellow" href={daftar} {...(luar ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>Daftarkan siswa</a>
-          <HubungiAdmin pilihan={[{ label: 'SD', nomor: c.contact.whatsapp }, { label: 'TK & PG', nomor: c.contact.whatsappTk }]} telepon={telepon} />
+          <HubungiAdmin pilihan={kontakDari(c).map((k) => ({ label: k.nama, nomor: k.whatsapp }))} telepon={telepon} />
         </div>
         <h2 className="daftar-judul">{t.pendaftaranHalaman.judulAlur}</h2>
         <ol className="daftar-langkah">

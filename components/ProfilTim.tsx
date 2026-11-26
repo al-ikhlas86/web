@@ -18,22 +18,25 @@ const inisial = (nama: string) => (nama.replace(/^(bapak|ibu|pak|bu|ust\.?|ustad
 
 // Halaman Profil Yayasan: pengurus (diisi manual lewat Kelola Website) + guru/pegawai yang memilih tampil dan sudah disetujui.
 // Seluruh kartu sudah ada di HTML saat build (dapat dibaca mesin pencari); popup hanya tambahan tampilan.
-export default function ProfilTim({ orang, katalog }: { orang: KartuOrang[]; katalog: { kode: string; nama: string }[] }) {
+export default function ProfilTim({ orang, katalog, yayasanDulu = true }: { orang: KartuOrang[]; katalog: { kode: string; nama: string }[]; yayasanDulu?: boolean }) {
   const [tab, setTab] = useState('Semua');
   const [detail, setDetail] = useState<KartuOrang | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const tutupRef = useRef<HTMLButtonElement>(null);
   const adaYayasan = orang.some((o) => o.katalogKode === '');
-  const label = useMemo(() => ['Semua', ...(adaYayasan ? ['Yayasan'] : []), ...katalog.filter((k) => orang.some((o) => o.katalogKode === k.kode)).map((k) => k.nama)], [adaYayasan, katalog, orang]);
+  const label = useMemo(() => {
+    const nama = katalog.filter((k) => orang.some((o) => o.katalogKode === k.kode)).map((k) => k.nama);
+    return ['Semua', ...(yayasanDulu ? [...(adaYayasan ? ['Yayasan'] : []), ...nama] : [...nama, ...(adaYayasan ? ['Yayasan'] : [])])];
+  }, [adaYayasan, katalog, orang, yayasanDulu]);
 
   const grup = useMemo(() => {
-    const kunciGrup = [...(adaYayasan ? [''] : []), ...katalog.map((k) => k.kode)];
+    const kunciGrup = yayasanDulu ? [...(adaYayasan ? [''] : []), ...katalog.map((k) => k.kode)] : [...katalog.map((k) => k.kode), ...(adaYayasan ? [''] : [])];
     return kunciGrup.map((kode) => {
       const nama = kode === '' ? 'Yayasan' : katalog.find((k) => k.kode === kode)?.nama ?? kode;
       const anggota = orang.filter((o) => o.katalogKode === kode);
       return { kode, nama, bagian: URUTAN.map((k) => ({ kelompok: k, daftar: anggota.filter((o) => o.kelompok === k) })).filter((b) => b.daftar.length > 0) };
     }).filter((g) => g.bagian.length > 0 && (tab === 'Semua' || g.nama === tab));
-  }, [orang, katalog, adaYayasan, tab]);
+  }, [orang, katalog, adaYayasan, tab, yayasanDulu]);
 
   useEffect(() => {
     const dialog = dialogRef.current;

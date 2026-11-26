@@ -1,11 +1,11 @@
 import SchoolHomepage from '@/components/SchoolHomepage';
-import { getSiteContent } from '@/lib/site-content';
+import { getSiteTerpadu } from '@/lib/katalog';
 import { grafOrganisasi, jsonLdAman } from '@/lib/seo';
 
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const content = await getSiteContent();
+  const content = await getSiteTerpadu();
   return (
     <>
       <SchoolHomepage content={content} />
