@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   applicationName: 'Al Ikhlas 86',
   keywords: ['Al Ikhlas 86', 'Yayasan Al Ikhlas 86', 'SDIT Al Ikhlas', 'TKIT Al Ikhlas', 'sekolah Islam terpadu Bekasi Selatan', 'Jakasetia'],
   alternates: { canonical: '/' },
-  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 } },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'none', 'max-snippet': -1 } },
   openGraph: {
     type: 'website', locale: 'id_ID', siteName: 'Al Ikhlas 86', url: `${SITE_URL}/`, title: 'Yayasan Al Ikhlas 86 - TKIT & SDIT Al Ikhlas Bekasi Selatan', description: DESKRIPSI,
     images: [{ url: '/images/al-ikhlas-hero.webp', alt: 'Gedung SDIT Al Ikhlas Jakasetia' }],
