@@ -4,7 +4,7 @@ import type { Article } from '@/lib/site-content';
 import { withBase } from '@/lib/base-path';
 import { slugArtikel } from '@/lib/slug';
 
-export type LiveArticle = Article & { katalogLabel: string; foto: string[]; tautan: string[] };
+export type LiveArticle = Article & { katalogKode: string; katalogLabel: string; foto: string[]; tautan: string[] };
 
 const API = (process.env.NEXT_PUBLIC_API_BERITA ?? 'https://app.yayasanalikhlas86.sch.id/mobile-api').replace(/\/$/, '');
 
@@ -32,6 +32,7 @@ export function petakanBerita(data: unknown): LiveArticle[] {
       image: hanyaGambar(b.cover) ? b.cover : '', // PhotoSlot menambahkan base path sendiri
       excerpt: teks(b.ringkasan, 300) || teks(b.judul, 300),
       body: teks(b.isi, 6000),
+      katalogKode: b.katalog?.kode ? teks(b.katalog.kode, 20) : '', // kosong = untuk semua katalog
       katalogLabel: label,
       foto: (Array.isArray(b.foto) ? b.foto : []).filter(hanyaGambar).slice(0, 12),
       tautan: (Array.isArray(b.tautan) ? b.tautan : []).filter(hanyaHttp).slice(0, 6),

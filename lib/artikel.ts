@@ -7,7 +7,7 @@ import { slugArtikel } from '@/lib/slug';
 // (scripts/snapshot-berita.mjs -> public/berita/snapshot.json). Jadi halaman artikel tetap ada walau VPS mati.
 export type Artikel = {
   id: number; slug: string; judul: string; kategori: string; ringkasan: string; isi: string; tanggal: string;
-  katalog: string; cover: string; foto: string[]; tautan: string[];
+  katalog: string; katalogKode: string; cover: string; foto: string[]; tautan: string[];
 };
 
 const teks = (v: unknown, maks: number) => (typeof v === 'string' ? v.slice(0, maks) : '');
@@ -35,9 +35,10 @@ export function daftarArtikel(): Artikel[] {
     if (!tanggal) continue;
     const foto = (Array.isArray(b.foto) ? b.foto : []).filter(lokal).slice(0, 12);
     const katalog = b.katalog && typeof b.katalog === 'object' ? teks((b.katalog as { nama?: unknown }).nama, 60) : '';
+    const katalogKode = b.katalog && typeof b.katalog === 'object' ? teks((b.katalog as { kode?: unknown }).kode, 20) : ''; // kosong = untuk semua katalog
     hasil.push({
       id: b.id, slug, judul, kategori: teks(b.kategori, 60), ringkasan: teks(b.ringkasan, 300) || judul, isi: teks(b.isi, 6000), tanggal,
-      katalog: katalog || 'Yayasan', cover: lokal(b.cover) ? b.cover : (foto[0] ?? ''), foto,
+      katalog: katalog || 'Yayasan', katalogKode, cover: lokal(b.cover) ? b.cover : (foto[0] ?? ''), foto,
       tautan: (Array.isArray(b.tautan) ? b.tautan : []).filter(https).slice(0, 6),
     });
   }

@@ -15,6 +15,27 @@ export type Terpadu = {
 };
 export type SiteTerpadu = SiteContent & Terpadu;
 
+export type PilihanKatalog = { kode: string; nama: string };
+
+/**
+ * Katalog pendidikan yang terdaftar, berurutan sesuai urutan yang diatur Admin IT (Kelola Website). Dipakai SEMUA penyaring per katalog (artikel, berita beranda, galeri)
+ * supaya pilihannya selalu daftar katalog terdaftar, bukan sekadar katalog yang kebetulan sudah punya isi. Tanpa data katalog backend: dari namaKatalog cadangan.
+ */
+export function katalogPendidikan(c: Partial<Terpadu>): PilihanKatalog[] {
+  const nama = c.namaKatalog ?? {};
+  const jenis = c.jenisKatalog ?? {};
+  return Object.keys(nama).filter((kode) => (jenis[kode] ?? 'pendidikan') === 'pendidikan').map((kode) => ({ kode, nama: nama[kode] }));
+}
+
+/** Isi tanpa katalog (kode kosong) = untuk semua katalog, jadi muncul di setiap pilihan; selain itu hanya di katalognya sendiri. */
+export const cocokKatalog = (kodeIsi: string | null | undefined, pilih: string): boolean => pilih === 'Semua' || !kodeIsi || kodeIsi === pilih;
+
+/** Urutan tampil: sesuai urutan katalog terdaftar, isi umum (tanpa katalog) di akhir. Stabil untuk isi satu katalog. */
+export function urutkanPerKatalog<T>(isi: T[], kodeDari: (x: T) => string | null | undefined, urutan: PilihanKatalog[]): T[] {
+  const idx = (x: T) => { const i = urutan.findIndex((k) => k.kode === kodeDari(x)); return i === -1 ? urutan.length : i; };
+  return isi.map((x, n) => ({ x, n })).sort((a, b) => idx(a.x) - idx(b.x) || a.n - b.n).map((o) => o.x);
+}
+
 /** Kontak dari site.json (cadangan bila data katalog belum tersedia): SD dan TK seperti sebelumnya. */
 export function kontakCadangan(c: SiteContent): KontakKatalog[] {
   return [

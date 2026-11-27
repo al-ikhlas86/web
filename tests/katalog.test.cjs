@@ -93,3 +93,15 @@ test('kontak katalog belum diisi Admin IT: TIDAK tampil (tanpa cadangan nomor la
   eq(tipe.daftarEmail(tanpa), [content.contact.email], 'email umum yayasan tetap tersedia untuk mailto');
   eq(tipe.terapkanKatalog(content, null).kontakKatalog.map((k) => k.kode), ['SD', 'TK'], 'data katalog dari backend tidak tersedia sama sekali: cadangan site.json');
 });
+
+test('penyaring per katalog: pilihan = katalog pendidikan terdaftar (urutan Admin IT), isi tanpa katalog muncul di semua pilihan', () => {
+  const t = tipe.terapkanKatalog(content, snap([K('TK', 'TK & Playground'), K('SD', 'Sekolah Dasar'), K('YYS', 'Yayasan Usaha', 'pengurus')]));
+  eq(tipe.katalogPendidikan(t).map((k) => k.kode), ['TK', 'SD'], 'pengurus tidak jadi pilihan; urutan mengikuti Admin IT, walau belum ada isinya');
+  assert.equal(tipe.cocokKatalog('SD', 'SD'), true);
+  assert.equal(tipe.cocokKatalog('SD', 'TK'), false, 'artikel SD tidak muncul di pilihan TK');
+  assert.equal(tipe.cocokKatalog('', 'TK'), true, 'berita untuk semua katalog tampil di tiap pilihan');
+  assert.equal(tipe.cocokKatalog('SD', 'Semua'), true);
+  const g = [{ k: 'SD' }, { k: '' }, { k: 'TK' }, { k: 'SD' }];
+  eq(tipe.urutkanPerKatalog(g, (x) => x.k, tipe.katalogPendidikan(t)).map((x) => x.k), ['TK', 'SD', 'SD', ''], 'galeri: katalog pertama di depan, umum di akhir');
+  eq(tipe.katalogPendidikan(tipe.terapkanKatalog(content, null)).map((k) => k.kode), ['SD', 'TK'], 'tanpa data backend: cadangan SD/TK');
+});

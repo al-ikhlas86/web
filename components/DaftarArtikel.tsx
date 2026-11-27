@@ -5,20 +5,20 @@ import Link from 'next/link';
 import { MagnifyingGlass } from '@phosphor-icons/react/dist/csr/MagnifyingGlass';
 import { withBase } from '@/lib/base-path';
 import { srcsetUntuk } from '@/lib/gambar';
+import { cocokKatalog, type PilihanKatalog } from '@/lib/katalog-tipe';
 
-export type KartuArtikel = { slug: string; judul: string; ringkasan: string; tanggal: string; katalog: string; cover: string };
+export type KartuArtikel = { slug: string; judul: string; ringkasan: string; tanggal: string; katalog: string; katalogKode: string; cover: string };
 const PER_HALAMAN = 12;
 const tgl = (t: string) => new Date(`${t}T00:00:00+07:00`).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Jakarta' });
 
 // Daftar semua artikel dengan penyaring katalog + pencarian. Isi sudah ada di HTML saat build (dapat dibaca mesin pencari).
-export default function DaftarArtikel({ items }: { items: KartuArtikel[] }) {
-  const [katalog, setKatalog] = useState('Semua');
+export default function DaftarArtikel({ items, pilihan }: { items: KartuArtikel[]; pilihan: PilihanKatalog[] }) {
+  const [katalog, setKatalog] = useState('Semua'); // 'Semua' atau kode katalog terdaftar
   const [cari, setCari] = useState('');
   const [tampil, setTampil] = useState(PER_HALAMAN);
-  const labelKatalog = useMemo(() => ['Semua', ...Array.from(new Set(items.map((i) => i.katalog)))], [items]);
   const hasil = useMemo(() => {
     const k = cari.trim().toLocaleLowerCase('id');
-    return items.filter((i) => (katalog === 'Semua' || i.katalog === katalog) && (!k || `${i.judul} ${i.ringkasan}`.toLocaleLowerCase('id').includes(k)));
+    return items.filter((i) => cocokKatalog(i.katalogKode, katalog) && (!k || `${i.judul} ${i.ringkasan}`.toLocaleLowerCase('id').includes(k)));
   }, [items, katalog, cari]);
 
   if (items.length === 0) {
@@ -27,14 +27,14 @@ export default function DaftarArtikel({ items }: { items: KartuArtikel[] }) {
   return (
     <>
       <div className="article-tools">
-        {labelKatalog.length > 2 && (
-          <div className="gallery-filters" aria-label="Kategori artikel">
-            {labelKatalog.map((l) => <button key={l} aria-pressed={katalog === l} className={katalog === l ? 'active' : ''} onClick={() => { setKatalog(l); setTampil(PER_HALAMAN); }}>{l}</button>)}
+        {pilihan.length > 1 && (
+          <div className="gallery-filters" aria-label="Katalog artikel">
+            {[{ kode: 'Semua', nama: 'Semua' }, ...pilihan].map((l) => <button key={l.kode} aria-pressed={katalog === l.kode} className={katalog === l.kode ? 'active' : ''} onClick={() => { setKatalog(l.kode); setTampil(PER_HALAMAN); }}>{l.nama}</button>)}
           </div>
         )}
         <label className="search-field"><MagnifyingGlass size={18} aria-hidden="true" /><input type="search" value={cari} onChange={(e) => { setCari(e.target.value); setTampil(PER_HALAMAN); }} placeholder="Cari artikel..." aria-label="Cari artikel" /></label>
       </div>
-      {hasil.length === 0 ? <div className="empty-state"><p>Artikel tidak ditemukan. Coba kata kunci lain.</p></div> : (
+      {hasil.length === 0 ? <div className="empty-state"><p>{cari.trim() ? 'Artikel tidak ditemukan. Coba kata kunci lain.' : `Belum ada artikel untuk ${pilihan.find((p) => p.kode === katalog)?.nama ?? 'katalog ini'}.`}</p></div> : (
         <div className="news-grid article-grid">
           {hasil.slice(0, tampil).map((a) => (
             <Link key={a.slug} href={`/artikel/${a.slug}/`} className="news-card">

@@ -3,6 +3,7 @@ import SubpageShell from '@/components/SubpageShell';
 import DaftarArtikel from '@/components/DaftarArtikel';
 import { daftarArtikel } from '@/lib/artikel';
 import { getSiteTerpadu } from '@/lib/katalog';
+import { katalogPendidikan } from '@/lib/katalog-tipe';
 import { SITE_URL, jsonLdAman, mutlak } from '@/lib/seo';
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 
 export default async function HalamanArtikel() {
   const [content, artikel] = [await getSiteTerpadu(), daftarArtikel()];
-  const kartu = artikel.map((a) => ({ slug: a.slug, judul: a.judul, ringkasan: a.ringkasan, tanggal: a.tanggal, katalog: a.katalog, cover: a.cover }));
+  const kartu = artikel.map((a) => ({ slug: a.slug, judul: a.judul, ringkasan: a.ringkasan, tanggal: a.tanggal, katalog: a.katalog, katalogKode: a.katalogKode, cover: a.cover }));
   const graf = {
     '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Semua Artikel Al Ikhlas 86', url: `${SITE_URL}/artikel/`, inLanguage: 'id-ID',
     isPartOf: { '@id': `${SITE_URL}/#situs` },
@@ -27,7 +28,7 @@ export default async function HalamanArtikel() {
           <h1 className="sub-title">Semua Artikel</h1>
           <p>Kabar, kegiatan, dan informasi dari keluarga besar Al Ikhlas 86. Artikel diperbarui otomatis dari Berita Acara sekolah.</p>
         </div>
-        <DaftarArtikel items={kartu} />
+        <DaftarArtikel items={kartu} pilihan={katalogPendidikan(content)} />
       </section>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdAman(graf) }} />
     </SubpageShell>
