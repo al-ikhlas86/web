@@ -83,10 +83,13 @@ test('snapshot dari jaringan divalidasi ketat: kode/jenis/kontak buruk dibuang, 
   assert.equal(bacaSnapshotKatalog({ data: { katalog: [], urutanProfil: 'acak' } }).urutanProfil, 'pengurus');
 });
 
-test('kontak katalog belum diisi Admin IT: SD/TK memakai kontak site.json agar tombol tidak hilang; katalog baru tanpa kontak tidak menampilkan apa pun', () => {
-  const t = tipe.terapkanKatalog(content, snap([K('SD', 'Sekolah Dasar'), K('TK', 'TK & Playground'), K('SMP', 'SMP')]));
-  eq(t.kontakKatalog.map((k) => k.kode), ['SD', 'TK']);
-  assert.equal(t.kontakKatalog[0].nama, 'Sekolah Dasar'); assert.equal(t.kontakKatalog[0].whatsapp, content.contact.whatsapp); assert.equal(t.kontakKatalog[1].whatsapp, content.contact.whatsappTk);
-  const hanyaBaru = tipe.terapkanKatalog(content, snap([K('SMP', 'SMP')]));
-  eq(hanyaBaru.kontakKatalog.map((k) => k.kode), ['SD', 'TK'], 'tak satu pun katalog punya kontak: seluruhnya cadangan site.json');
+test('kontak katalog belum diisi Admin IT: TIDAK tampil (tanpa cadangan nomor lama); hanya yang sudah diisi', () => {
+  const kontak = { label: 'Admin SD', whatsapp: '628111111111', email: '' };
+  const t = tipe.terapkanKatalog(content, snap([K('SD', 'Sekolah Dasar', 'pendidikan', kontak), K('TK', 'TK & Playground'), K('SMP', 'SMP')]));
+  eq(t.kontakKatalog.map((k) => k.kode), ['SD'], 'TK dan SMP belum diisi: tidak tampil');
+  assert.equal(t.kontakKatalog[0].nama, 'Sekolah Dasar'); assert.equal(t.kontakKatalog[0].whatsapp, '628111111111');
+  const tanpa = tipe.terapkanKatalog(content, snap([K('SD', 'Sekolah Dasar'), K('TK', 'TK & Playground')]));
+  eq(tanpa.kontakKatalog, [], 'tak satu pun katalog punya kontak: kosong (halaman memakai telepon/email umum yayasan), bukan nomor lama site.json');
+  eq(tipe.daftarEmail(tanpa), [content.contact.email], 'email umum yayasan tetap tersedia untuk mailto');
+  eq(tipe.terapkanKatalog(content, null).kontakKatalog.map((k) => k.kode), ['SD', 'TK'], 'data katalog dari backend tidak tersedia sama sekali: cadangan site.json');
 });

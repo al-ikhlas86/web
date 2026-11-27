@@ -39,17 +39,12 @@ function kartuBawaan(k: KatalogSnapshot): ItemPendidikan {
 }
 
 /**
- * Kontak per katalog: dari Admin IT bila sudah diisi; bila belum, katalog SD/TK memakai kontak di site.json (agar tombol WhatsApp/email tidak hilang
- * selama kontak katalog belum diisi); katalog baru tanpa kontak tidak menampilkan kontak. Bila tak satu pun ada, seluruhnya memakai cadangan site.json.
+ * Kontak per katalog: HANYA katalog yang kontaknya sudah diisi Admin IT (menu Email & Kontak) yang tampil; katalog tanpa kontak tidak menampilkan apa pun
+ * (tidak ada lagi cadangan nomor lama dari site.json). Tanpa satu pun kontak katalog, halaman memakai telepon dan email umum yayasan. Cadangan site.json
+ * hanya dipakai bila data katalog dari backend tidak tersedia sama sekali (lihat terapkanKatalog).
  */
-function kontakGabungan(c: SiteContent, snap: SnapshotKatalog): KontakKatalog[] {
-  const cadangan = kontakCadangan(c);
-  const hasil = snap.katalog.flatMap((k): KontakKatalog[] => {
-    if (k.kontak) return [{ kode: k.kode, nama: k.nama, label: k.kontak.label, whatsapp: k.kontak.whatsapp, email: k.kontak.email }];
-    const lama = cadangan.find((x) => x.kode === k.kode);
-    return lama ? [{ ...lama, nama: k.nama }] : [];
-  });
-  return hasil.length ? hasil : cadangan;
+function kontakGabungan(snap: SnapshotKatalog): KontakKatalog[] {
+  return snap.katalog.flatMap((k): KontakKatalog[] => (k.kontak ? [{ kode: k.kode, nama: k.nama, label: k.kontak.label, whatsapp: k.kontak.whatsapp, email: k.kontak.email }] : []));
 }
 
 export function terapkanKatalog(c: SiteContent, snap: SnapshotKatalog | null): SiteTerpadu {
@@ -64,7 +59,7 @@ export function terapkanKatalog(c: SiteContent, snap: SnapshotKatalog | null): S
   return {
     ...c,
     education: kartu.length ? kartu : c.education,
-    kontakKatalog: kontakGabungan(c, snap),
+    kontakKatalog: kontakGabungan(snap),
     urutanProfil: snap.urutanProfil,
     jenisKatalog: Object.fromEntries(snap.katalog.map((k) => [k.kode, k.jenis])),
     namaKatalog: Object.fromEntries(snap.katalog.map((k) => [k.kode, k.nama])),
